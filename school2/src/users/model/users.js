@@ -66,13 +66,5 @@ const usersSchema = new mongoose.Schema({
     type: String,
     required: true
   }
-  //   name: { type: String, required: true },
-  //   classTeacher: {
-  //      type: mongoose.Types.ObjectId,
-  //      ref: "Users", required: true },
-  //   createDate: {
-  //     type: Date,
-  //     default: Date.now,
-  //   },
 });
 module.exports = mongoose.model("Users", usersSchema);
