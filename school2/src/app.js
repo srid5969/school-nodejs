@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const manager = require("../config/manager.ts");
+const classes = require("./classes/controller/classes");
 
 const app = express();
 
@@ -12,8 +13,9 @@ database.on("error", (error) => {
 database.once("connected", () => {
   console.log("Database Connected");
 });
-
 app.use(express.json());
+app.use("/", classes);
+
 app.listen(8080, () => {
   console.log(`Server Started at 8080`);
 });
