@@ -1,3 +1,4 @@
-const mongoString='mongodb://localhost:27017'
+const mongoString =
+  "mongodb+srv://british-empire:sri@cluster0.ecrv48m.mongodb.net/new?retryWrites=true&w=majority";
 
-module.exports=mongoString
+module.exports = mongoString;
