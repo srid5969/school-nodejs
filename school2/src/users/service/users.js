@@ -1,3 +1,5 @@
+const bcrypt = require("bcrypt");
+
 const users = require("../model/users");
 
 exports.getAll = () => {
@@ -41,7 +43,28 @@ exports.save = (
 
   return data.save();
 };
-exports.login=async(username,password)=>{
-  
+exports.login = async (username, password) => {
+  const data = (
+    await users.aggregate([
+      ({
+        $match: {
+          email: username,
+        },
+      },
+      {
+        $group: {
+          _id: "$password",
+        },
+      }),
+    ])
+  ).pop()._id;
 
-}
+  if (data) {
+    const Data = await bcrypt.compare(password, data);
+    if (Data) {
+      return "Welcome ";
+    } else {
+      return "Wrong password please check the password";
+    }
+  }
+};

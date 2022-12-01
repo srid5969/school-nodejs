@@ -6,7 +6,7 @@ const manager = require("../common/config/manager.ts");
 const login = require("../common/middleware/login"); //({ option1: '1', option2: '2'})
 
 const app = express();
-app.use(login({option:'1'}));
+// app.use(login({option:'1'}));
 mongoose.connect(manager);
 const database = mongoose.connection;
 database.on("error", (error) => {
