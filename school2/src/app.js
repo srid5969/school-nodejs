@@ -17,7 +17,7 @@ database.once("connected", () => {
 });
 app.use(express.json());
 // app.use("/", classes);
-app.use("/use", users);
+app.use("/user", users);
 app.listen(8080, () => {
   console.log(`Server Started at 8080`);
 });

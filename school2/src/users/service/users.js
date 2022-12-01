@@ -4,7 +4,23 @@ exports.getAll = () => {
   return users.find();
 };
 
-exports.save = (FirstName,LastName,Phone,PhoneCode,Email,Password,Gender,DOB,Role,Address1,Address2,City,State,Pincode,Status) => {
+exports.save = (
+  FirstName,
+  LastName,
+  Phone,
+  PhoneCode,
+  Email,
+  Password,
+  Gender,
+  DOB,
+  Role,
+  Address1,
+  Address2,
+  City,
+  State,
+  Pincode,
+  Status
+) => {
   const data = new users({
     firstName: FirstName,
     lastName: LastName,
@@ -22,4 +38,6 @@ exports.save = (FirstName,LastName,Phone,PhoneCode,Email,Password,Gender,DOB,Rol
     pincode: Pincode,
     status: Status,
   });
+
+  return data.save();
 };
