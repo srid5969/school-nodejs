@@ -13,7 +13,7 @@ const studentAttendanceSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  date: {
+  dates: {
     type: Date,
     required: true,
   },
@@ -22,4 +22,4 @@ const studentAttendanceSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
-module.exports = mongoose.model("teachersAttendance", teachersAttendanceSchema);
+module.exports = mongoose.model("studentsAttendance", studentAttendanceSchema);

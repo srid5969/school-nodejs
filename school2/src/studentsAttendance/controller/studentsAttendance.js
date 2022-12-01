@@ -8,6 +8,6 @@ router.get("/", async (req, res) => {
 });
 router.post('/',async(req,res)=>{
   const r=req.body
-  service.get((r.FirstName,r.LastName,r.Classid,r.Dob,r.Fathername,r.Mothername,r.Address1,r.Address2,r.City,r.State,r.Pincode,r.Createdate))
+  service.get((r.ClassId,r.StudentId,r.Status,r.Dates,r.Createdate))
   .then(data=>res.json(data))
 })
