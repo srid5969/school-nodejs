@@ -1,9 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const manager = require("../config/manager.ts");
 const classes = require("./classes/controller/classes");
 const users = require("./users/controller/users");
-
+const manager = require("../common/config/manager.ts");
 
 const app = express();
 
@@ -17,7 +16,7 @@ database.once("connected", () => {
 });
 app.use(express.json());
 // app.use("/", classes);
-app.use("/use", users);
+app.use("/user", users);
 app.listen(8080, () => {
   console.log(`Server Started at 8080`);
 });

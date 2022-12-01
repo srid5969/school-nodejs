@@ -18,4 +18,4 @@ const teachersAttendanceSchema = new mongoose.Schema({
     default: Date.now,
   }
 });
-module.exports = mongoose.model("teachersAttendance", teachersAttendanceSchema);
+module.exports = mongoose.model("teachersattendance", teachersAttendanceSchema);
