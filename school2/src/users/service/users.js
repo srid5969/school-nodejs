@@ -41,3 +41,7 @@ exports.save = (
 
   return data.save();
 };
+exports.login=async(username,password)=>{
+  
+
+}

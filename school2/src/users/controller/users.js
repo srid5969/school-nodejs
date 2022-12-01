@@ -30,4 +30,8 @@ router.post("/", async (req, res) => {
 
 
 
-router.post('/login')
+router.post('/login',(req,res)=>{
+  const {username,password} = req.body;
+ service.login(username,password)
+  res.json({"username":username,"password":password})
+})
