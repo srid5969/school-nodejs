@@ -1,9 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const manager = require("../config/manager.ts");
 const classes = require("./classes/controller/classes");
 const users = require("./users/controller/users");
-
+const manager = require("../common/config/manager.ts");
 
 const app = express();
 

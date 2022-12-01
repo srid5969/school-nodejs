@@ -11,7 +11,7 @@ const StudentsSchema = new mongoose.Schema({
   },
   classid: {
     type: mongoose.Types.ObjectId, 
-    ref: "Classes", required: true },
+    ref: "classes", required: true },
   dob:{
     type:Date,
     required: true,
