@@ -1,5 +1,5 @@
 const router = require("express").Router();
-module.exports=router;
+module.exports = router;
 const service = require("../service/classes");
 
 router.post("/post", async (req, res) => {
