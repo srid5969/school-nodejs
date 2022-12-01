@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const teachersAttendanceSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Types.ObjectId,
-    ref: "student",
+    ref: "students",
   },
   status: {
     type: String,
@@ -18,4 +18,4 @@ const teachersAttendanceSchema = new mongoose.Schema({
     default: Date.now,
   }
 });
-module.exports = mongoose.model("teachersattendance", teachersAttendanceSchema);
+module.exports = mongoose.model("teacherattendance", teachersAttendanceSchema);
