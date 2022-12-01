@@ -67,4 +67,8 @@ const usersSchema = new mongoose.Schema({
     required: true
   }
 });
+
+usersSchema.pre('save' ,async function (next){
+
+})
 module.exports = mongoose.model("users", usersSchema);
