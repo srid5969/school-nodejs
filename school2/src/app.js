@@ -16,7 +16,7 @@ database.once("connected", () => {
   console.log("Database Connected");
 });
 app.use(express.json());
-// app.use("/", classes);
+app.use("/class", classes);
 app.use("/user", users);
 
 app.listen(8080, () => {

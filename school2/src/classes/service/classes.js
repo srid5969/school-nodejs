@@ -1,4 +1,5 @@
 const classes = require("../model/classes");
+const users = require("../../users/model/users");
 
 exports.save = async (Name, ClassTeacher) => {
   const data = new classes({
@@ -7,4 +8,15 @@ exports.save = async (Name, ClassTeacher) => {
   });
 
   return data.save();
+};
+exports.getAll = async () => {
+  const data = classes.find().populate({ path: "classTeacher", model: users });
+  return data;
+};
+
+exports.getByClassName = async (payload) => {
+  const data = classes
+    .find({ 'name': payload })
+    .populate({ path: "classTeacher", model: users });
+    return data
 };
