@@ -6,7 +6,7 @@ module.exports = router;
 router.get("/hello", async (req, res) => {
   service.getAll().then((data) => res.json(data));
 });
-router.post("/", async (req, res) => {
+router.post("/signup", async (req, res) => {
   const r = req.body;
   service.save(
     r.FirstName,
