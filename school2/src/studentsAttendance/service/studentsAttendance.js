@@ -4,12 +4,24 @@ exports.getAll = () => {
   return students.find();
 };
 
-exports.save = (ClassId,StudentId,Status,Dates,CreateDate) => {
-  const data = new users({
+exports.register = (ClassId, StudentId, Status, Dates, CreateDate) => {
+  const data = new students({
     classid: ClassId,
     studentId: StudentId,
     status: Status,
     dates: Dates,
-    createDate: CreateDate
+    createDate: CreateDate,
   });
+};
+exports.deleteStudentsAttendance = async (payload) => {
+  const data = students.deleteOne({ studentId: payload });
+  return data;
+};
+exports.updateStudentsAttendance = async (stuId, Status) => {
+  const data = students.findByIdAndUpdate({ studentId: stuId }, { status: Status });
+  return data;
+};
+exports.findStudentsAttendanceByStudentId = async (payload) => {
+  const data = students.findOne({ studentId: payload });
+  return data;
 };

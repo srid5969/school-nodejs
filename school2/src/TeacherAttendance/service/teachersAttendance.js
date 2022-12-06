@@ -1,14 +1,28 @@
-const students = require("../model/studentsAttendance");
+const teachers = require("../model/teachersAttendance");
 
 exports.getAll = () => {
-  return students.find();
+  return teachers.find();
 };
 
-exports.save = (UserId,Status,Dates,CreateDate) => {
-  const data = new users({
+exports.register = (payload) => {
+  const { UserId, Status, Dates, CreateDate } = payload;
+  const data = new teachers({
     userId: UserId,
     status: Status,
-    dates: Dates,
-    createDate: CreateDate
+    date: Dates,
+    createDate: CreateDate,
   });
+};
+exports.deleteTeachersById = async (payload) => {
+  const data = await teachers.findByIdAndDelete(payload);
+};
+exports.findTeachersById = async (payload) => {
+  const data = await teachers.findById(payload);
+};
+exports.updateTeachersById = async (id, payload) => {
+  const { UserId, Status, Dates, CreateDate } = payload;
+  const data = await teachers.findOneAndUpdate(
+    { _id: payload },
+    { userId: UserId, status: Status, date: Dates, createDate: CreateDate }
+  );
 };
