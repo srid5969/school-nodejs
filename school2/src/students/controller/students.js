@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
 });
 router.post("/", async (req, res) => {
   service
-    .register(req.body, req.user)
+    .register(req.body, userDetail)
     .then((data) => res.json(data))
     .catch((err) => res.send(err));
 });
@@ -21,7 +21,7 @@ router.get("/:id", async (req, res) => {
     .then((data) => res.json(data))
     .catch((err) => res.send(err));
 });
-router.put("/:id", async (req, res) => {
+router.patch("/:id", async (req, res) => {
   service
     .updateStudentDetailsById(req.params.id, req.body)
     .then((data) => res.json(data))

@@ -1,8 +1,6 @@
 const bcrypt = require("bcrypt");
 const users = require("../../src/users/model/users");
-
-// const getUserFromToken = require("../getUserFromToken");
-const usertoken = require("../../src/usertoken/model/usertoken");
+const userToken = require("../../src/usertoken/model/usertoken");
 const N = 30;
 const generatedToken = Array(N + 1)
   .join((Math.random().toString(36) + "8782").slice(2, 18))
@@ -12,36 +10,51 @@ module.exports = async (req, res, next) => {
   let originalUrl = req.originalUrl;
   let username = req.headers.username;
   let password = req.headers.password;
+  let Token = req.headers.authorization;
   if (originalUrl === "/user/login") {
     if (username && password) {
       const data = (await users.findOne({ email: username })).password;
-      const data1 = await users.findOne({ email: username });
+      const data1 = await users.findOne({ email: username });//id
+
       if (data) {
         const Data = await bcrypt.compare(password, data);
 
         if (Data) {
-          const token = await usertoken({
+          const id = data1._id;
+          await userToken.deleteMany({ users: id });
+          const token = await userToken({
             users: data1,
             token: generatedToken,
             status: "Active",
           });
-          token.save();
-          next();
+          token.save().then((tada) => res.send(tada));
+          // next();
         } else {
           res.json({
             WrongPassword: "Wrong password please check the password",
           });
         }
       }
-
-      next();
     } else {
       res.send("Please add username and password");
     }
   } else if (originalUrl == "/user/signup") {
-    console.log(originalUrl);
     next();
-  }else{
-    next()
+  } else if (originalUrl == "/user/logout") {
+    console.log(Token);
+
+    if (Token) {
+      const TokenIsValid = await userToken.findOne({ token: Token });
+      if (TokenIsValid) {
+        userToken.findOneAndUpdate({ token: Token }, { status: "Inactive" });
+        next();
+      } else {
+        res.send("Token Is not valid");
+      }
+    } else {
+      res.send("Please Enter Token");
+    }
+  } else {
+    next();
   }
 };

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./school2/src/app.js",
+    "debug":"nodemon --inspect-brk=localhost:8080 ./school2/src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

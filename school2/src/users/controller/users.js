@@ -18,18 +18,21 @@ router.get("/login", async (req, res) => {
 router.post("/logout", (req, res) => {
   res.send("Thank you");
 });
-router.post("/update", async (req, res) => {
+router.post("/", async (req, res) => {
   const user = req.headers.username;
 });
-router.delete("/delete", async (req, res) => {
+router.delete("/", async (req, res) => {
   service
     .deleteByEmail(req.headers.username)
     .then((data) => res.json(data))
     .catch((err) => res.send(err));
 });
-router.put("/update", async (req, res) => {
+router.patch("/", async (req, res) => {
   service
     .update(req.headers.username)
     .then((data) => res.json(data))
     .catch((err) => res.send(err));
 });
+router.post('/',async(req,res)=>{
+  res.send("Thank You")
+})

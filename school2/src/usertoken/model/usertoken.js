@@ -34,7 +34,7 @@ userSchema.pre("save", async function (next) {
     const data = Array(N + 1)
       .join((Math.random().toString(36) + "8782").slice(2, 18))
       .slice(0, N);
-    this.token =await data;
+    this.token = await data;
     this.status = "Active";
     next();
   } catch (error) {

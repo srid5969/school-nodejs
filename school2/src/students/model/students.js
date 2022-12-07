@@ -10,41 +10,43 @@ const StudentsSchema = new mongoose.Schema({
     required: true,
   },
   classid: {
-    type: mongoose.Types.ObjectId, 
-    ref: "classes", required: true },
-  dob:{
-    type:Date,
+    type: mongoose.Types.ObjectId,
+    ref: "classes",
     required: true,
-    },
+  },
+  dob: {
+    type: Date,
+    required: true,
+  },
   fathername: {
-    type:String,
+    type: String,
     required: true,
   },
 
   mothername: {
-    type:String,
+    type: String,
     required: true,
   },
   address1: {
-    type:String,
+    type: String,
     required: true,
   },
   address2: {
-    type:String,
+    type: String,
     required: true,
   },
   city: {
-    type:String,
+    type: String,
     required: true,
   },
   pincode: {
-    type:Number,
+    type: Number,
     required: true,
   },
   createdate: {
-    type:Date,
+    type: Date,
     default: Date.now,
     required: true,
-  }
+  },
 });
-module.exports = mongoose.model("Students", usersSchema);
+module.exports = mongoose.model("Students", StudentsSchema);

@@ -3,15 +3,20 @@ module.exports = router;
 const service = require("../service/classes");
 
 router.post("/post", async (req, res) => {
-  res.json(service.register(req.body.name, req.body.teacher));
+  console.log(req.body.name,userDetail)
+  service
+  .registerClass(req.body.name,userDetail)
+    // .registerClass(req.body.name, req.user)
+    .then((data) => res.send(data))
+    .catch((err) => res.send(err));
 });
-router.get("/", async (req, res) => {
+router.get("/all", async (req, res) => {
   service
     .getAll()
     .then((data) => res.json(data))
     .catch((err) => res.send(err));
 });
-router.put("/:class", async (req, res) => {
+router.get("/:class", async (req, res) => {
   service
     .getByClassName(req.params.class)
     .then((data) => res.json(data))
@@ -23,9 +28,10 @@ router.delete("/:class", async (req, res) => {
     .then((data) => res.json(data))
     .catch((err) => res.send(err));
 });
-router.put("/:class", async (req, res) => {
+router.patch("/:class", async (req, res) => {
   service
-    .updateClassTeacherByClassName(req.params.class)
+    .updateClassTeacherByClassName(req.params.class,userDetail)
     .then((data) => res.json(data))
     .catch((err) => res.send(err));
 });
+

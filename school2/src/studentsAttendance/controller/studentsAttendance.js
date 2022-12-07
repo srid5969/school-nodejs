@@ -27,7 +27,7 @@ router.delete("/:id", async (req, res) => {
     .then((data) => res.json(data))
     .catch((err) => res.send(err));
 });
-router.put("/:id", async (req, res) => {
+router.patch("/:id", async (req, res) => {
   service
     .updateStudentsAttendance(req.params.id, req.body)
     .then((data) => res.json(data))
