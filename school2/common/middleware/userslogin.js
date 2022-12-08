@@ -6,9 +6,7 @@ module.exports = async (req, res, next) => {
   let Password = req.headers.password;
   if (originalUrl == "/user/login") {
     const data = await users.findOne({ email: username });
-    if (data.role == "Admin") {
-      next();
-    } else if (data.role == "Principle") {
+     if (data.role == "Principle") {
       if (originalUrl == "/user/login" || originalUrl == "/signup") {
         next();
       } else {
