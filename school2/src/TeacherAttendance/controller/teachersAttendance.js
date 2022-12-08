@@ -34,3 +34,4 @@ router.delete("/", async (req, res) => {
     .then((data) => res.json(data))
     .catch((err) => res.send(err));
 });
+// git clone --branch School2 https://sridhar073:ATBBbEgvkumqSN25LZFHS7AVVXes168F6C10@bitbucket.org/innovixtech-admin/innovix_web_backend.git

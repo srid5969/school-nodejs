@@ -1,6 +1,8 @@
 const bcrypt = require("bcrypt");
 const users = require("../../src/users/model/users");
 const userToken = require("../../src/usertoken/model/usertoken");
+const event = require("../events/users");
+
 const N = 30;
 const generatedToken = Array(N + 1)
   .join((Math.random().toString(36) + "8782").slice(2, 18))
@@ -14,8 +16,8 @@ module.exports = async (req, res, next) => {
   if (originalUrl === "/user/login") {
     if (username && password) {
       const data = (await users.findOne({ email: username })).password;
-      const data1 = await users.findOne({ email: username });//id
-
+      const data1 = await users.findOne({ email: username }); //id
+      event.emit("active",(data1._id));
       if (data) {
         const Data = await bcrypt.compare(password, data);
 
@@ -46,7 +48,11 @@ module.exports = async (req, res, next) => {
     if (Token) {
       const TokenIsValid = await userToken.findOne({ token: Token });
       if (TokenIsValid) {
-        userToken.findOneAndUpdate({ token: Token }, { status: "Inactive" });
+        await userToken.findOneAndUpdate(
+          { token: Token },
+          { status: "Inactive" }
+        );
+        await event.emit("inactive", await TokenIsValid.users);
         next();
       } else {
         res.send("Token Is not valid");

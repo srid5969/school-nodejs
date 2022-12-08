@@ -11,12 +11,10 @@ const teachersAttendance = require("./TeacherAttendance/controller/teachersAtten
 const token = require("../common/middleware/token");
 const students = require("./students/controller/students");
 
-
-
 const app = express();
 
 app.use(login);
-app.use(token)
+app.use(token);
 app.use(userVerification);
 app.use(tokenLogin);
 mongoose.connect(manager);
@@ -32,7 +30,7 @@ app.use("/class", classes);
 app.use("/user", users);
 app.use("/student", studentsAttendance);
 app.use("/teacher", teachersAttendance);
-
+app.use("/students", students);
 app.listen(8080, () => {
   console.log(`Server Started at 8080`);
 });
