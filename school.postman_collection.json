@@ -1,0 +1,660 @@
+{
+	"info": {
+		"_postman_id": "d82b53be-f146-4a42-a00f-b75f1db623d0",
+		"name": "school",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23451519"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "username",
+								"value": "sridharofficialmail@gmail.com",
+								"type": "text"
+							},
+							{
+								"key": "password",
+								"value": "sridhar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/user/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"FirstName\":\"Sridhar\",\n    \"LastName\":\"R\",\n    \"Phone\":7094715969,\n    \"PhoneCode\":91,\n    \"Email\":\"sridharofficialmail@gmail.com\",\n    \"Password\":\"sridhar\",\n    \"Gender\":\"male\",\n    \"DOB\":\"02-09-2001\",\n    \"Role\":\"Teacher\",\n    \"Address1\":\"Alangudi\",\n    \"Address2\":\"Pudukkottai\",\n    \"City\":\"Trichy\",\n    \"State\":\"Tamil Nadu\",\n    \"Pincode\":622301,\n    \"Status\":\"Active\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/user/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditUser",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "dpn3x264ssr8782dpn3x264ssr8782",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/user/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllUsers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ozqshki0gf8782ozqshki0gf8782oz",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/user/all",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUser",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "dpn3x264ssr8782dpn3x264ssr8782",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/user",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "ozqshki0gf8782ozqshki0gf8782oz",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/user/logout",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "classes",
+			"item": [
+				{
+					"name": "GetClassDeatailsByClassName",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ozqshki0gf8782ozqshki0gf8782oz",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/class/X A",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"class",
+								"X A"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RegisterClass",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "dpn3x264ssr8782dpn3x264ssr8782",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"XIIE\",\n    \"classTeacher\":\"638b105a0d65a77e5bf3724d\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/class",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"class"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditClass",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "dpn3x264ssr8782dpn3x264ssr8782",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"XEE\",\n    \"classTeacher\":\"638b0fd80d65a77e5bf37249\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/class",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"class"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllClass",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "dpn3x264ssr8782dpn3x264ssr8782",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/api/class/classes/teachersinfo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"class",
+								"classes",
+								"teachersinfo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteClass",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "dpn3x264ssr8782dpn3x264ssr8782",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/api/class/638b04b684b4095c0e37cd10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"class",
+								"638b04b684b4095c0e37cd10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "students",
+			"item": [
+				{
+					"name": "GetStudentDetails",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "dpn3x264ssr8782dpn3x264ssr8782",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/api/student/students",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"student",
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateStudent",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "dpn3x264ssr8782dpn3x264ssr8782",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"firstName\": \"kangana\",\n        \"lastName\": \"V\",\n        \"dob\":\"2019-05-21\",\n        \"fathername\": \"vigadan\",\n        \"mothername\": \"meena\",\n        \"address1\": \"chengapatu\",\n        \"address2\": \"Chennai\",\n        \"city\": \"Chennai\",\n        \"state\": \"TN\",\n        \"pincode\": 603205\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/student/students",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"student",
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditStudentsDetails",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "dpn3x264ssr8782dpn3x264ssr8782",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/student",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"student"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteStudent",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "dpn3x264ssr8782dpn3x264ssr8782",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/student",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"student"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "studentsattendance",
+			"item": [
+				{
+					"name": "RegisterSudentAttendance",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "dpn3x264ssr8782dpn3x264ssr8782",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\":\"active\",\n    \"date\":\"2020-05-22\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/studentsattendance",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"studentsattendance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetStudentsAttedance",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "dpn3x264ssr8782dpn3x264ssr8782",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/studentsattendance",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"studentsattendance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteStudentAttendace",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "dpn3x264ssr8782dpn3x264ssr8782",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/studentsattendance",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"studentsattendance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditStudentAttendance",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "dpn3x264ssr8782dpn3x264ssr8782",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/studentsattendance",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"studentsattendance"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "teachersattendance",
+			"item": [
+				{
+					"name": "TeacherAttentance",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "dpn3x264ssr8782dpn3x264ssr8782",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/teachersattendance",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachersattendance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RegisterTeachersAttendace",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "dpn3x264ssr8782dpn3x264ssr8782",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\":\"active\",\n    \"date\":\"2019-06-12\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/teachersattendance",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachersattendance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditTeachersAttendance",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "dpn3x264ssr8782dpn3x264ssr8782",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/teachersattendance",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachersattendance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteTeachersAttendance",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "dpn3x264ssr8782dpn3x264ssr8782",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/teachersattendance",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teachersattendance"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

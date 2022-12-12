@@ -46,7 +46,7 @@ exports.register = (datas) => {
   return data.save();
 };
 exports.userlogin = function (data) {
-  return "Welcome " + data;
+  return data;
 };
 exports.update = async (datas, user) => {
   const {
