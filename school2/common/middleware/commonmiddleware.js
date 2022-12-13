@@ -13,7 +13,7 @@ module.exports = async (req, res, next) => {
       const data1 = await users.findOne({ email: username });
       const data = data1.password;
       event.emit("active", data1._id);
-      if (data) {
+      if (data && data1) {
         const Data = await bcrypt.compare(password, data);
         if (Data) {
           const id = data1._id;
@@ -62,8 +62,6 @@ module.exports = async (req, res, next) => {
       } else {
         res.send("Token Is not valid");
       }
-    } else {
-      res.send("Please Enter Token");
     }
   }
 
@@ -78,54 +76,50 @@ module.exports = async (req, res, next) => {
       console.log(TokenData);
       userDetail = TokenData.users;
       userId = userDetail._id;
-
-      if (userDetail.role) {
-        if (userDetail.role === "Teacher") {
-          if (
-            (originalUrl === "/teacher" && req.method === "GET") ||
-            (originalUrl === "/teacher" && req.method === "PATCH") ||
-            originalUrl == "/student" ||
-            originalUrl == "/student/all" ||
-            originalUrl == "/students" ||
-            originalUrl == "/students/all" ||
-            originalUrl == "/class" ||
-            originalUrl == "/class/all"
-          ) {
-            next();
-            if (!Token) res.send("Please Enter The token");
+      if (Token) {
+        if (userDetail.role) {
+          if (userDetail.role === "Teacher") {
+            if (
+              (originalUrl === "/teacher" && req.method === "GET") ||
+              (originalUrl === "/teacher" && req.method === "PATCH") ||
+              originalUrl == "/student" ||
+              originalUrl == "/student/all" ||
+              originalUrl == "/students" ||
+              originalUrl == "/students/all" ||
+              originalUrl == "/class" ||
+              originalUrl == "/class/all"
+            ) {
+              next();
+              console.log(userDetail.role);
+            } else {
+              res.status(404).send("user is unauthorized");
+            }
+          } else if (userDetail.role === "Principle") {
+            if (
+              originalUrl === "user/signup" ||
+              originalUrl === "user/all" ||
+              originalUrl === "/teacher" ||
+              originalUrl == "/student" ||
+              originalUrl == "/student/all" ||
+              originalUrl == "/students" ||
+              originalUrl == "/students/all" ||
+              originalUrl == "/class" ||
+              originalUrl == "/class/all" ||
+              originalUrl == "/teacher/all"
+            ) {
+              next();
+              console.log(userDetail.role);
+            }
           } else {
-            res.status(404).send("user is unauthorized");
-          }
-        } else if (userDetail.role === "Principle") {
-          if (
-            originalUrl === "user/signup" ||
-            originalUrl === "user/all" ||
-            originalUrl === "/teacher" ||
-            originalUrl == "/student" ||
-            originalUrl == "/student/all" ||
-            originalUrl == "/students" ||
-            originalUrl == "/students/all" ||
-            originalUrl == "/class" ||
-            originalUrl == "/class/all" ||
-            originalUrl == "/teacher/all"
-          ) {
+            console.log(userDetail.role);
             next();
-            if (!Token) res.send("Please Enter The token");
           }
         } else {
-          console.log("Admin");
-          next();
-          if (!Token) res.send("Please Enter The token");
+          res.send("Please Enter The token");
         }
       }
     } else {
-      res.send("Token is invalid");
+      if (originalUrl !== "/user/login") res.send("Token is invalid");
     }
   }
-  //if not token send error message
-  // if (originalUrl == "/user/login") {
-  //   next();
-  // } else {
-  //   if (!Token) res.send("Please Enter The token");
-  // }
 };
