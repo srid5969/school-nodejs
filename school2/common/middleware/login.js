@@ -29,7 +29,7 @@ module.exports = async (req, res, next) => {
             token: generatedToken,
             status: "Active",
           });
-          token.save().then((tada) => res.send(tada));
+          token.save().then((_data) => res.send(_data));
           // next();
         } else {
           res.json({
@@ -43,7 +43,6 @@ module.exports = async (req, res, next) => {
   } else if (originalUrl == "/user/signup") {
     next();
   } else if (originalUrl == "/user/logout") {
-    // console.log(Token);
 
     if (Token) {
       const TokenIsValid = await userToken.findOne({ token: Token });

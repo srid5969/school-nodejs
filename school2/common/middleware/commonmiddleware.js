@@ -1,7 +1,10 @@
 const bcrypt = require("bcrypt");
 const users = require("../../src/users/model/users");
 const userToken = require("../../src/usertoken/model/usertoken");
+
 const event = require("../events/users");
+const classes = require("../../src/classes/model/classes");
+
 module.exports = async (req, res, next) => {
   let originalUrl = req.originalUrl;
   console.log(`\n\n \t 192.168.0.123:8080${originalUrl} \t ${req.method}`);
@@ -96,23 +99,29 @@ module.exports = async (req, res, next) => {
       userDetail = TokenData.users;
       userId = userDetail._id;
       if (Token) {
+        var du = await classes.find();
+        var classPatch=[]
+        for (let i = 0; i < du.length; i++) {
+          classPatch[i] = (du[i].name).replace(' ','%20');
+        }
+        console.log(classPatch)
         if (userDetail.role) {
           if (userDetail.role === "Teacher") {
             if (
               originalUrl === "/user" ||
               (originalUrl === "/teacher" && req.method === "GET") ||
-              (originalUrl === "/teacher" && req.method === "PATCH") ||
+              (originalUrl === "/teacher" && req.method === "classPatch") ||
               originalUrl == "/student" ||
               originalUrl == "/student/all" ||
               originalUrl == "/students" ||
               originalUrl == "/students/all" ||
-              originalUrl == "/class" ||
-              originalUrl == "/class/" + "*" ||
+              originalUrl == "/class" ||(
+              originalUrl == "/class/" + classPatch) ||
               originalUrl == "/class/all"
             ) {
               next();
               console.log("Accessed by \t", userDetail.role);
-              console.log("\t Token : ", Token,'\n');
+              console.log("\t Token : ", Token, "\n");
             } else {
               res.status(404).send("user is unauthorized");
             }
@@ -126,18 +135,18 @@ module.exports = async (req, res, next) => {
               originalUrl == "/student/all" ||
               originalUrl == "/students" ||
               originalUrl == "/students/all" ||
-              originalUrl == "/class/" + "*" ||
+              originalUrl == "/class/" + classPatch ||
               originalUrl == "/class" ||
               originalUrl == "/class/all" ||
               originalUrl == "/teacher/all"
             ) {
               next();
-              console.log("\t Token : ", Token,'\n');
+              console.log("\t Token : ", Token, "\n");
               console.log("Accessed by \t", userDetail.role);
             }
           } else {
             console.log("\t Accessed by \t", userDetail.role);
-            console.log("\t Token : ", Token,'\n');
+            console.log("\t Token : ", Token, "\n");
             next();
           }
         } else {
