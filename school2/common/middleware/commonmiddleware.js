@@ -44,7 +44,7 @@ module.exports = async (req, res, next) => {
       res.send("Please add username and password");
     }
     //
-  } else if (originalUrl == "/user/logout") {
+  } else if (originalUrl == "/user/logout") {  
     console.log(Token);
 
     if (Token) {
@@ -52,6 +52,26 @@ module.exports = async (req, res, next) => {
         .findOne({ token: Token })
         .populate({ path: "users" });
       const TokenIsValid = await userToken.findOne({ token: Token });
+      if (TokenIsValid) {
+        await userToken.findOneAndUpdate(
+          { token: Token },
+          { status: "Inactive" }
+        );
+        await event.emit("inactive", await TokenIsValid.users);
+        next();
+      } else {
+        res.send("Token Is not valid");
+      }
+    }
+  }else if(originalUrl == "/user/logoutall")
+  {
+    console.log(Token);
+
+    if (Token) {
+      let TokenData = await userToken
+        .findOne({ token: Token })
+        .populate({ path: "users" });
+      const TokenIsValid = await userToken.update({},{$set:{status:"Inactive"}});
       if (TokenIsValid) {
         await userToken.findOneAndUpdate(
           { token: Token },
