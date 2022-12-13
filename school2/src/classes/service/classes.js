@@ -35,7 +35,7 @@ exports.getAll = async () => {
 
 exports.getByClassName = async (payload) => {
   const data = classes
-    .find({ name: payload })
+    .findOne({ name: payload })
     .populate({ path: "classTeacher", model: users });
   return data;
 };

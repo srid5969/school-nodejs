@@ -3,18 +3,14 @@ module.exports = router;
 const service = require("../service/classes");
 
 router.post("/", async (req, res) => {
-  // console.log(req.body.name,userDetail)
   service
     .registerClass(req.body.name, userDetail)
-    // .registerClass(req.body.name, req.user)
     .then((data) => res.send(data))
     .catch((err) => res.send(err));
 });
 router.post("/assign", async (req, res) => {
-  // console.log(req.body.name,userDetail)
   service
     .assignTeacher(req.body.name, req.body.classTeacherId)
-    // .registerClass(req.body.name, req.user)
     .then((data) => res.send(data))
     .catch((err) => res.send(err));
 });

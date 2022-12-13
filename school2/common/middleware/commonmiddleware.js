@@ -8,6 +8,7 @@ module.exports = async (req, res, next) => {
   let username = req.body.username;
   let password = req.body.password;
   let Token = req.headers.authorization;
+
   if (originalUrl === "/user/login") {
     if (username && password) {
       const data1 = await users.findOne({ email: username });
@@ -98,6 +99,7 @@ module.exports = async (req, res, next) => {
         if (userDetail.role) {
           if (userDetail.role === "Teacher") {
             if (
+              originalUrl === "/user" ||
               (originalUrl === "/teacher" && req.method === "GET") ||
               (originalUrl === "/teacher" && req.method === "PATCH") ||
               originalUrl == "/student" ||
@@ -110,12 +112,14 @@ module.exports = async (req, res, next) => {
             ) {
               next();
               console.log("Accessed by \t", userDetail.role);
+              console.log("\t Token : ", Token,'\n');
             } else {
               res.status(404).send("user is unauthorized");
             }
           } else if (userDetail.role === "Principle") {
             if (
-              originalUrl === "user/signup" ||
+              originalUrl === "/user" ||
+              originalUrl === "/user/signup" ||
               originalUrl === "user/all" ||
               originalUrl === "/teacher" ||
               originalUrl == "/student" ||
@@ -128,10 +132,12 @@ module.exports = async (req, res, next) => {
               originalUrl == "/teacher/all"
             ) {
               next();
+              console.log("\t Token : ", Token,'\n');
               console.log("Accessed by \t", userDetail.role);
             }
           } else {
             console.log("\t Accessed by \t", userDetail.role);
+            console.log("\t Token : ", Token,'\n');
             next();
           }
         } else {
