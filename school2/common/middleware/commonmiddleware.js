@@ -100,11 +100,12 @@ module.exports = async (req, res, next) => {
       userId = userDetail._id;
       if (Token) {
         var du = await classes.find();
-        var classPatch=[]
         for (let i = 0; i < du.length; i++) {
-          classPatch[i] = (du[i].name).replace(' ','%20');
+          if (originalUrl === "/class/".concat(du[i].name.replace(" ", "%20")))
+            var classPatch = "/class/".concat(du[i].name.replace(" ", "%20"));
+          break;
         }
-        console.log(classPatch)
+       
         if (userDetail.role) {
           if (userDetail.role === "Teacher") {
             if (
@@ -115,12 +116,12 @@ module.exports = async (req, res, next) => {
               originalUrl == "/student/all" ||
               originalUrl == "/students" ||
               originalUrl == "/students/all" ||
-              originalUrl == "/class" ||(
-              originalUrl == "/class/" + classPatch) ||
+              originalUrl == "/class" ||
+              originalUrl == classPatch ||
               originalUrl == "/class/all"
             ) {
               next();
-              console.log("Accessed by \t", userDetail.role);
+              console.log("\t Accessed by \t", userDetail.role);
               console.log("\t Token : ", Token, "\n");
             } else {
               res.status(404).send("user is unauthorized");
@@ -135,14 +136,14 @@ module.exports = async (req, res, next) => {
               originalUrl == "/student/all" ||
               originalUrl == "/students" ||
               originalUrl == "/students/all" ||
-              originalUrl == "/class/" + classPatch ||
+              originalUrl == classPatch ||
               originalUrl == "/class" ||
               originalUrl == "/class/all" ||
               originalUrl == "/teacher/all"
             ) {
               next();
               console.log("\t Token : ", Token, "\n");
-              console.log("Accessed by \t", userDetail.role);
+              console.log("\t Accessed by \t", userDetail.role);
             }
           } else {
             console.log("\t Accessed by \t", userDetail.role);
