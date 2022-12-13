@@ -43,7 +43,7 @@ module.exports = async (req, res, next) => {
   } else if (originalUrl == "/user/signup") {
     next();
   } else if (originalUrl == "/user/logout") {
-    console.log(Token);
+    // console.log(Token);
 
     if (Token) {
       const TokenIsValid = await userToken.findOne({ token: Token });

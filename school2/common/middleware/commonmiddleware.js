@@ -4,14 +4,14 @@ const userToken = require("../../src/usertoken/model/usertoken");
 const event = require("../events/users");
 module.exports = async (req, res, next) => {
   let originalUrl = req.originalUrl;
-  console.log(`192.168.0.123:8080${originalUrl} \t ${req.method}`);
-  let username = req.headers.username;
-  let password = req.headers.password;
+  console.log(`\n\n \t 192.168.0.123:8080${originalUrl} \t ${req.method}`);
+  let username = req.body.username;
+  let password = req.body.password;
   let Token = req.headers.authorization;
   if (originalUrl === "/user/login") {
     if (username && password) {
       const data1 = await users.findOne({ email: username });
-      const data = data1.password;
+      const data = await data1.password;
       event.emit("active", data1._id);
       if (data && data1) {
         const Data = await bcrypt.compare(password, data);
@@ -27,7 +27,6 @@ module.exports = async (req, res, next) => {
             token: generatedToken,
             status: "Active",
           });
-
           usersTokenWithPassword = await token.save();
           let result = usersTokenWithPassword;
           result = result.toObject();
@@ -44,9 +43,8 @@ module.exports = async (req, res, next) => {
       res.send("Please add username and password");
     }
     //
-  } else if (originalUrl == "/user/logout") {  
-    console.log(Token);
-
+  } else if (originalUrl == "/user/logout") {
+    // console.log(Token);
     if (Token) {
       let TokenData = await userToken
         .findOne({ token: Token })
@@ -63,15 +61,16 @@ module.exports = async (req, res, next) => {
         res.send("Token Is not valid");
       }
     }
-  }else if(originalUrl == "/user/logoutall")
-  {
-    console.log(Token);
-
+  } else if (originalUrl == "/user/logoutall") {
+    // console.log(Token);
     if (Token) {
       let TokenData = await userToken
         .findOne({ token: Token })
         .populate({ path: "users" });
-      const TokenIsValid = await userToken.update({},{$set:{status:"Inactive"}});
+      const TokenIsValid = await userToken.update(
+        {},
+        { $set: { status: "Inactive" } }
+      );
       if (TokenIsValid) {
         await userToken.findOneAndUpdate(
           { token: Token },
@@ -84,7 +83,6 @@ module.exports = async (req, res, next) => {
       }
     }
   }
-
   if (originalUrl === "user/logout") {
     res[0].send("Thank  You");
     res[1].send("Thank  You");
@@ -93,7 +91,7 @@ module.exports = async (req, res, next) => {
       .findOne({ token: Token })
       .populate({ path: "users" });
     if (TokenData) {
-      console.log(TokenData);
+      // console.log(TokenData);
       userDetail = TokenData.users;
       userId = userDetail._id;
       if (Token) {
@@ -107,10 +105,11 @@ module.exports = async (req, res, next) => {
               originalUrl == "/students" ||
               originalUrl == "/students/all" ||
               originalUrl == "/class" ||
+              originalUrl == "/class/" + "*" ||
               originalUrl == "/class/all"
             ) {
               next();
-              console.log(userDetail.role);
+              console.log("Accessed by \t", userDetail.role);
             } else {
               res.status(404).send("user is unauthorized");
             }
@@ -123,15 +122,16 @@ module.exports = async (req, res, next) => {
               originalUrl == "/student/all" ||
               originalUrl == "/students" ||
               originalUrl == "/students/all" ||
+              originalUrl == "/class/" + "*" ||
               originalUrl == "/class" ||
               originalUrl == "/class/all" ||
               originalUrl == "/teacher/all"
             ) {
               next();
-              console.log(userDetail.role);
+              console.log("Accessed by \t", userDetail.role);
             }
           } else {
-            console.log(userDetail.role);
+            console.log("\t Accessed by \t", userDetail.role);
             next();
           }
         } else {

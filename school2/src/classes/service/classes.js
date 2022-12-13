@@ -10,14 +10,21 @@ const users = require("../../users/model/users");
 //  return data.save();
 
 // };
-
+exports.assignTeacher = async (className, teacher) => {
+  const teacherData = await users.findById(teacher);
+  const data = await classes.create({
+    classTeacher: teacherData,
+    name: className,
+  });
+  return await data;
+};
 exports.registerClass = async (Name, user) => {
-  console.log(user);
+  // console.log(user);
   const data = await new classes({
     name: Name,
     classTeacher: user,
   });
-  console.log("classTeacher");
+  // console.log("classTeacher");
   // return data.save();
   return data.save();
 };
@@ -36,10 +43,12 @@ exports.deleteByClassName = async (payload) => {
   const data = classes.deleteOne({ name: payload });
   return "Successfully deleted";
 };
-exports.updateClassTeacherByClassName = async (payload,user) => {
-  const data = classes.updateOne(
+exports.updateClassTeacherByClassName = async (payload, user) => {
+  const data = await classes.updateOne(
     { name: payload },
     { classTeacher: user }
   );
-  return data;
+  return await classes
+    .findOne({ name: payload })
+    .populate({ path: "classTeacher" });
 };
