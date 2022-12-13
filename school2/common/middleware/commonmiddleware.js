@@ -114,6 +114,7 @@ module.exports = async (req, res, next) => {
               originalUrl == "/student" ||
               originalUrl == "/student/all" ||
               originalUrl == "/students" ||
+              originalUrl == "/students/ss" ||
               originalUrl == "/students/all" ||
               originalUrl == "/class" ||(
               originalUrl == "/class/" + classPatch) ||
@@ -133,6 +134,7 @@ module.exports = async (req, res, next) => {
               originalUrl === "/teacher" ||
               originalUrl == "/student" ||
               originalUrl == "/student/all" ||
+              originalUrl == "/students/ss" ||
               originalUrl == "/students" ||
               originalUrl == "/students/all" ||
               originalUrl == "/class/" + classPatch ||

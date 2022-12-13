@@ -4,15 +4,17 @@ exports.getAll = () => {
   return students.find();
 };
 
-exports.findStudentByfirstName = () => {
+
+exports.findStudentByfirstName = (datas) => {
   const {
     FirstName
   } = datas;
-  const data = new students({
-    firstName: FirstName
+  const datass = new students({
+    firstName:FirstName
   });
-  return data.find();
+  return datass.findOne({datass});
 };
+
 
 
 exports.register = (datas) => {
@@ -28,7 +30,7 @@ exports.register = (datas) => {
     City,
     State,
     Pincode,
-    Createdate,
+    // Createdate,
   } = datas;
   const data = new students({
     firstName: FirstName,
@@ -42,8 +44,9 @@ exports.register = (datas) => {
     city: City,
     state: State,
     pincode: Pincode,
-    createdate: Createdate,
+    createdate: 323255,
   });
+  return data.save()
 };
 exports.updateStudentDetailsById = async (id, datas) => {
   const {
