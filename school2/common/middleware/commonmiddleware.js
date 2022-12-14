@@ -107,16 +107,13 @@ module.exports = async (req, res, next) => {
         if (userDetail.role) {
           if (userDetail.role === "Teacher") {
             if (
-              originalUrl === "/user" ||
-              (originalUrl === "/teacher" && req.method === "GET") ||
-              (originalUrl === "/teacher" && req.method === "classPatch") ||
-              originalUrl == "/student" ||
-              originalUrl == "/student/all" ||
-              originalUrl == "/students" ||
-              originalUrl == "/students/all" ||
-              originalUrl == "/class" ||(
-              originalUrl == "/class/" + classPatch) ||
-              originalUrl == "/class/all"
+              !(
+                originalUrl == "/teacher/all" ||
+                originalUrl === "/user/signup" ||
+                originalUrl === "user/all" ||
+                originalUrl === "user/login" ||
+                originalUrl == "/user/logout"
+              )
             ) {
               next();
               console.log("\t Accessed by \t", userDetail.role);
@@ -126,18 +123,7 @@ module.exports = async (req, res, next) => {
             }
           } else if (userDetail.role === "Principle") {
             if (
-              originalUrl === "/user" ||
-              originalUrl === "/user/signup" ||
-              originalUrl === "user/all" ||
-              originalUrl === "/teacher" ||
-              originalUrl == "/student" ||
-              originalUrl == "/student/all" ||
-              originalUrl == "/students" ||
-              originalUrl == "/students/all" ||
-              originalUrl == "/class/" + classPatch ||
-              originalUrl == "/class" ||
-              originalUrl == "/class/all" ||
-              originalUrl == "/teacher/all"
+              !(originalUrl == "/user/logout" || originalUrl == "/user/login")
             ) {
               next();
               console.log("\t Token : ", Token, "\n");
