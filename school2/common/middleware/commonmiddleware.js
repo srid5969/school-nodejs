@@ -119,6 +119,7 @@ module.exports = async (req, res, next) => {
               console.log("\t Accessed by \t", userDetail.role);
               console.log("\t Token : ", Token, "\n");
             } else {
+              console.log("\t Access Denied")
               res.status(404).json("user is unauthorized");
             }
           } else if (userDetail.role === "Principle") {
@@ -128,6 +129,9 @@ module.exports = async (req, res, next) => {
               next();
               console.log("\t Token : ", Token, "\n");
               console.log("\t Accessed by \t", userDetail.role);
+            }else {
+              console.log("\t Access Denied")
+              res.status(404).json("user is unauthorized");
             }
           } else {
             console.log("\t Accessed by \t", userDetail.role);

@@ -3,7 +3,7 @@ const service = require("../service/students");
 
 module.exports = router;
 
-router.get("/", async (req, res) => {
+router.get("/all", async (req, res) => {
   service
     .getAll()
     .then((data) => res.json(data))
