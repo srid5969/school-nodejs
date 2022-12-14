@@ -1,9 +1,7 @@
 const bcrypt = require("bcrypt");
 const users = require("../../src/users/model/users");
 const userToken = require("../../src/usertoken/model/usertoken");
-
 const event = require("../events/users");
-const classes = require("../../src/classes/model/classes");
 
 module.exports = async (req, res, next) => {
   let originalUrl = req.originalUrl;
@@ -99,26 +97,22 @@ module.exports = async (req, res, next) => {
       userDetail = TokenData.users;
       userId = userDetail._id;
       if (Token) {
-        var du = await classes.find();
-        for (let i = 0; i < du.length; i++) {
-          if (originalUrl === "/class/".concat(du[i].name.replace(" ", "%20")))
-            var classPatch = "/class/".concat(du[i].name.replace(" ", "%20"));
-          break;
-        }
-       
+        // var du = await classes.find();
+        // for (let i = 0; i < du.length; i++) {
+        //   if (originalUrl === "/class/".concat(du[i].name.replace(" ", "%20")))
+        //     var classPatch = "/class/".concat(du[i].name.replace(" ", "%20"));
+        //   break;
+        // }
+
         if (userDetail.role) {
           if (userDetail.role === "Teacher") {
             if (
-              originalUrl === "/user" ||
-              (originalUrl === "/teacher" && req.method === "GET") ||
-              (originalUrl === "/teacher" && req.method === "classPatch") ||
-              originalUrl == "/student" ||
-              originalUrl == "/student/all" ||
-              originalUrl == "/students" ||
-              originalUrl == "/students/all" ||
-              originalUrl == "/class" ||
-              originalUrl == classPatch ||
-              originalUrl == "/class/all"
+              !(
+                originalUrl == "/teacher/all" ||
+                originalUrl === "/user/signup" ||
+                originalUrl === "user/all" ||
+                originalUrl == "/user/logout"
+              )
             ) {
               next();
               console.log("\t Accessed by \t", userDetail.role);
@@ -128,18 +122,11 @@ module.exports = async (req, res, next) => {
             }
           } else if (userDetail.role === "Principle") {
             if (
-              originalUrl === "/user" ||
-              originalUrl === "/user/signup" ||
-              originalUrl === "user/all" ||
-              originalUrl === "/teacher" ||
-              originalUrl == "/student" ||
-              originalUrl == "/student/all" ||
-              originalUrl == "/students" ||
-              originalUrl == "/students/all" ||
-              originalUrl == classPatch ||
-              originalUrl == "/class" ||
-              originalUrl == "/class/all" ||
-              originalUrl == "/teacher/all"
+              !(
+                originalUrl === "user/all" ||
+                originalUrl == "/user/logout" ||
+                originalUrl == "/user/login"
+              )
             ) {
               next();
               console.log("\t Token : ", Token, "\n");
