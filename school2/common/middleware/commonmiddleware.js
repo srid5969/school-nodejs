@@ -111,6 +111,7 @@ module.exports = async (req, res, next) => {
                 originalUrl == "/teacher/all" ||
                 originalUrl === "/user/signup" ||
                 originalUrl === "user/all" ||
+                originalUrl === "user/login" ||
                 originalUrl == "/user/logout"
               )
             ) {
@@ -122,11 +123,7 @@ module.exports = async (req, res, next) => {
             }
           } else if (userDetail.role === "Principle") {
             if (
-              !(
-                originalUrl === "user/all" ||
-                originalUrl == "/user/logout" ||
-                originalUrl == "/user/login"
-              )
+              !(originalUrl == "/user/logout" || originalUrl == "/user/login")
             ) {
               next();
               console.log("\t Token : ", Token, "\n");
