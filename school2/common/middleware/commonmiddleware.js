@@ -36,13 +36,13 @@ module.exports = async (req, res, next) => {
           usersToken = result;
           next();
         } else {
-          res.send("Wrong password please check the password");
+          res.json("Wrong password please check the password");
         }
       } else {
-        res.send("Please add username and password");
+        res.json("Please add username and password");
       }
     } else {
-      res.send("Please add username and password");
+      res.json("Please add username and password");
     }
     //
   } else if (originalUrl=='/user/logout') {
@@ -60,7 +60,7 @@ module.exports = async (req, res, next) => {
         await event.emit("inactive", await TokenIsValid.users);
         next();
       } else {
-        res.send("Token Is not valid");
+        res.json("Token Is not valid");
       }
     }
   } else if (originalUrl == "/user/logoutall") {
@@ -81,13 +81,13 @@ module.exports = async (req, res, next) => {
         await event.emit("inactive", await TokenIsValid.users);
         next();
       } else {
-        res.send("Token Is not valid");
+        res.json("Token Is not valid");
       }
     }
   }
   if (originalUrl === "user/logout") {
-    res[0].send("Thank  You");
-    res[1].send("Thank  You");
+    res[0].json("Thank  You");
+    res[1].json("Thank  You");
   } else {
     let TokenData = await userToken
       .findOne({ token: Token })
@@ -119,7 +119,7 @@ module.exports = async (req, res, next) => {
               console.log("\t Accessed by \t", userDetail.role);
               console.log("\t Token : ", Token, "\n");
             } else {
-              res.status(404).send("user is unauthorized");
+              res.status(404).json("user is unauthorized");
             }
           } else if (userDetail.role === "Principle") {
             if (
@@ -135,11 +135,11 @@ module.exports = async (req, res, next) => {
             next();
           }
         } else {
-          res.send("Please Enter The token");
+          res.json("Please Enter The token");
         }
       }
     } else {
-      if (originalUrl !== "/user/login") res.send("Token is invalid");
+      if (originalUrl !== "/user/login") res.json("Token is invalid");
     }
   }
 };

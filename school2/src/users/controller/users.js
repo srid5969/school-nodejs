@@ -10,7 +10,7 @@ router.post("/signup", async (req, res) => {
   service
     .register(req.body)
     .then((data) => res.status(201).json(data))
-    .catch((err) => res.status(409).send(err));
+    .catch((err) => res.status(409).json(err));
 });
 router.post("/login", async (req, res) => {
   // const data=service.userlogin(userDeatail)
@@ -26,14 +26,14 @@ router.delete("/", async (req, res) => {
   service
     .deleteByEmail(req.headers.username)
     .then((data) => res.json(data))
-    .catch((err) => res.send(err));
+    .catch((err) => res.json(err));
 });
 router.patch("/", async (req, res) => {
   service
     .update(req.headers.username)
     .then((data) => res.json(data))
-    .catch((err) => res.send(err));
+    .catch((err) => res.json(err));
 });
 router.post("/", async (req, res) => {
-  res.send("Thank You");
+  res.json("Thank You");
 });
