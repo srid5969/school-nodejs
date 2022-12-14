@@ -26,6 +26,6 @@ app.use("/user", users);
 app.use("/student", studentsAttendance);
 app.use("/teacher", teachersAttendance);
 app.use("/students", students);
-app.listen(5000, () => {
+app.listen(8080, () => {
   console.log(`Server Started at 8080`);
 });

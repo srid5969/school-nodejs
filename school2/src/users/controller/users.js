@@ -17,7 +17,7 @@ router.post("/login", async (req, res) => {
   res.json(usersToken);
 });
 router.post("/logout", (req, res) => {
-  // res.send("Thank you");
+  res.json({ message: "Thank you" });
 });
 router.post("/", async (req, res) => {
   const user = req.headers.username;

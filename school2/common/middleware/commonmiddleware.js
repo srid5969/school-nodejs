@@ -45,7 +45,7 @@ module.exports = async (req, res, next) => {
       res.send("Please add username and password");
     }
     //
-  } else if (originalUrl == "/user/logout") {
+  } else if (originalUrl=='/user/logout') {
     // console.log(Token);
     if (Token) {
       let TokenData = await userToken
@@ -111,8 +111,8 @@ module.exports = async (req, res, next) => {
                 originalUrl == "/teacher/all" ||
                 originalUrl === "/user/signup" ||
                 originalUrl === "user/all" ||
-                originalUrl === "user/login" ||
-                originalUrl == "/user/logout"
+                originalUrl === "user/login" 
+                
               )
             ) {
               next();
@@ -123,7 +123,7 @@ module.exports = async (req, res, next) => {
             }
           } else if (userDetail.role === "Principle") {
             if (
-              !(originalUrl == "/user/logout" || originalUrl == "/user/login")
+              !(  originalUrl == "/user/login")
             ) {
               next();
               console.log("\t Token : ", Token, "\n");
