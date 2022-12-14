@@ -45,7 +45,7 @@ module.exports = async (req, res, next) => {
       res.json("Please add username and password");
     }
     //
-  } else if (originalUrl=='/user/logout') {
+  } else if (originalUrl == "/user/logout") {
     // console.log(Token);
     if (Token) {
       let TokenData = await userToken
@@ -84,10 +84,6 @@ module.exports = async (req, res, next) => {
         res.json("Token Is not valid");
       }
     }
-  }
-  if (originalUrl === "user/logout") {
-    res[0].json("Thank  You");
-    res[1].json("Thank  You");
   } else {
     let TokenData = await userToken
       .findOne({ token: Token })
@@ -97,13 +93,6 @@ module.exports = async (req, res, next) => {
       userDetail = TokenData.users;
       userId = userDetail._id;
       if (Token) {
-        // var du = await classes.find();
-        // for (let i = 0; i < du.length; i++) {
-        //   if (originalUrl === "/class/".concat(du[i].name.replace(" ", "%20")))
-        //     var classPatch = "/class/".concat(du[i].name.replace(" ", "%20"));
-        //   break;
-        // }
-
         if (userDetail.role) {
           if (userDetail.role === "Teacher") {
             if (
@@ -111,26 +100,23 @@ module.exports = async (req, res, next) => {
                 originalUrl == "/teacher/all" ||
                 originalUrl === "/user/signup" ||
                 originalUrl === "user/all" ||
-                originalUrl === "user/login" 
-                
+                originalUrl === "user/login"
               )
             ) {
               next();
               console.log("\t Accessed by \t", userDetail.role);
               console.log("\t Token : ", Token, "\n");
             } else {
-              console.log("\t Access Denied")
+              console.log("\t Access Denied");
               res.status(404).json("user is unauthorized");
             }
           } else if (userDetail.role === "Principle") {
-            if (
-              !(  originalUrl == "/user/login")
-            ) {
+            if (!(originalUrl == "/user/login")) {
               next();
               console.log("\t Token : ", Token, "\n");
               console.log("\t Accessed by \t", userDetail.role);
-            }else {
-              console.log("\t Access Denied")
+            } else {
+              console.log("\t Access Denied");
               res.status(404).json("user is unauthorized");
             }
           } else {
