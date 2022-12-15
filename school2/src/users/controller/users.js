@@ -2,6 +2,9 @@ const router = require("express").Router();
 const service = require("../service/users");
 
 module.exports = router;
+router.get("/csv", async (req, res) => {
+  service.generateCsvReportForAllUser().then(() => res.send({message:"Successfully Generated"})) .catch((err) => res.status(409).json(err));
+});
 router.get("/all", async (req, res) => {
   service.getAll().then((data) => res.json(data));
 });

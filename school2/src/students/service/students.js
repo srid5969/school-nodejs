@@ -5,75 +5,66 @@ exports.getAll = () => {
 };
 
 exports.findStudentByfirstName = () => {
-  const {
-    FirstName
-  } = datas;
+  const { FirstName } = datas;
   const data = new students({
-    firstName: FirstName
+    firstName: FirstName,
   });
   return data.find();
 };
 
-
-exports.register = (datas) => {
+exports.register =async (datas) => {
   const {
-    FirstName,
-    LastName,
-    Classid,
-    Dob,
-    Fathername,
-    Mothername,
-    Address1,
-    Address2,
-    City,
-    State,
-    Pincode,
-    Createdate,
+    firstName,
+    lastName,
+    classid,
+    dob,
+    fathername,
+    mothername,
+    address2,
+    address1,
+    city,
+    pincode,
   } = datas;
   const data = new students({
-    firstName: FirstName,
-    lastName: LastName,
-    classid: Classid,
-    dob: Dob,
-    fathername: Fathername,
-    mothername: Mothername,
-    address1: Address1,
-    address2: Address2,
-    city: City,
-    state: State,
-    pincode: Pincode,
-    createdate: Createdate,
+    firstName,
+    lastName,
+    classid,
+    dob,
+    fathername,
+    mothername,
+    address2,
+    address1,
+    city,
+    pincode,
   });
+  return await data.save();
 };
 exports.updateStudentDetailsById = async (id, datas) => {
   const {
-    FirstName,
-    LastName,
-    Classid,
-    Dob,
-    Fathername,
-    Mothername,
-    Address1,
-    Address2,
-    City,
-    State,
-    Pincode,
+    firstName,
+    lastName,
+    dob,
+    fathername,
+    mothername,
+    address2,
+    address1,
+    city,
+    pincode,
+    classid,
   } = datas;
-  const data = students.updateOne(
+  const data =await students.updateOne(
     { _id: id },
     {
-      firstName: FirstName,
-      lastName: LastName,
-      classid: Classid,
-      dob: Dob,
-      fathername: Fathername,
-      mothername: Mothername,
-      address1: Address1,
-      address2: Address2,
-      city: City,
-      state: State,
-      pincode: Pincode,
-      createdate: Createdate,
+      firstName,
+      lastName,
+      dob,
+      fathername,
+      mothername,
+      address2,
+      address1,
+      city,
+      pincode,
+      classid,
     }
   );
   return data;

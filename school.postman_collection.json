@@ -40,9 +40,12 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/user/login",
+							"raw": "192.168.0.123:8080/user/login",
 							"host": [
-								"localhost"
+								"192",
+								"168",
+								"0",
+								"123"
 							],
 							"port": "8080",
 							"path": [
@@ -118,7 +121,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "4bxcbjxclqn87824bxcbjxclqn8782",
+								"value": "un2ufta66gk8782un2ufta66gk8782",
 								"type": "text"
 							}
 						],
@@ -167,7 +170,7 @@
 						"header": [
 							{
 								"key": "authorization",
-								"value": "ozqshki0gf8782ozqshki0gf8782oz",
+								"value": "icppzlcylm8782icppzlcylm8782ic",
 								"type": "text"
 							}
 						],
@@ -197,12 +200,12 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "4bxcbjxclqn87824bxcbjxclqn8782",
+								"value": "zeww0shkxq8782zeww0shkxq8782ze",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/class/X A",
+							"raw": "http://localhost:8080/class/XIIE1324",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -210,7 +213,7 @@
 							"port": "8080",
 							"path": [
 								"class",
-								"X A"
+								"XIIE1324"
 							]
 						}
 					},
@@ -223,13 +226,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "dpn3x264ssr8782dpn3x264ssr8782",
+								"value": "fbdhxtegcc58782fbdhxtegcc58782",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"XIIE\",\n    \"classTeacher\":\"638b105a0d65a77e5bf3724d\"\n}",
+							"raw": "{\n    \"name\":\"XIIE1\",\n    \"classTeacher\":\"638b105a0d65a77e5bf3724dre\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -256,7 +259,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "dpn3x264ssr8782dpn3x264ssr8782",
+								"value": "fbdhxtegcc58782fbdhxtegcc58782",
 								"type": "text"
 							}
 						],
@@ -270,13 +273,15 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/class",
+							"raw": "http://localhost:8080/class/X A",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"class"
+								"class",
+								"X A"
 							]
 						}
 					},
@@ -289,7 +294,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "4bxcbjxclqn87824bxcbjxclqn8782",
+								"value": "zeww0shkxq8782zeww0shkxq8782ze",
 								"type": "text"
 							}
 						],
@@ -315,18 +320,19 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "of8zskqec48782of8zskqec48782of",
+								"value": "zeww0shkxq8782zeww0shkxq8782ze",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "localhost:8080/class",
+							"raw": "localhost:8080/class/XIIE1324",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"class"
+								"class",
+								"XIIE1324"
 							]
 						}
 					},
@@ -339,13 +345,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "4bxcbjxclqn87824bxcbjxclqn8782",
+								"value": "zeww0shkxq8782zeww0shkxq8782ze",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"XIIE\",\n    \"classTeacherId\":\"63889da3fb6a02327e9671f2\"\n}",
+							"raw": "{\n    \"name\":\"XIIE1324\",\n    \"classTeacherId\":\"63889da3fb6a02327e9671f2\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -378,20 +384,19 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "dpn3x264ssr8782dpn3x264ssr8782",
+								"value": "zeww0shkxq8782zeww0shkxq8782ze",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/student/",
+							"raw": "http://localhost:8080/student",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"student",
-								""
+								"student"
 							]
 						}
 					},
@@ -404,13 +409,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "dpn3x264ssr8782dpn3x264ssr8782",
+								"value": "zeww0shkxq8782zeww0shkxq8782ze",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\n        \"firstName\": \"kangana\",\n        \"lastName\": \"V\",\n        \"dob\":\"2019-05-21\",\n        \"fathername\": \"vigadan\",\n        \"mothername\": \"meena\",\n        \"address1\": \"chengapatu\",\n        \"address2\": \"Chennai\",\n        \"city\": \"Chennai\",\n        \"state\": \"TN\",\n        \"pincode\": 603205\n }",
+							"raw": "{\n    \"firstName\": \"kangana\",\n    \"lastName\": \"V\",\n    \"dob\": \"2019-05-21T00:00:00.000Z\",\n    \"fathername\": \"vigadan\",\n    \"mothername\": \"meena\",\n    \"address1\": \"chengapatu\",\n    \"address2\": \"Chennai\",\n    \"city\": \"Chennai\",\n    \"pincode\": 603205,\n    \"classid\":\"6396d89ef4a300068d2a30ba\",\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -418,13 +423,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:student/",
+							"raw": "http://localhost:8080/students/",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "student",
+							"port": "8080",
 							"path": [
+								"students",
 								""
 							]
 						}
@@ -480,19 +486,25 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "GetAllStudent",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "h9dlx8gup8w8782h9dlx8gup8w8782",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:8080/student/all",
+							"raw": "http://localhost:8080/students/all",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"student",
+								"students",
 								"all"
 							]
 						}

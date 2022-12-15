@@ -40,8 +40,8 @@ exports.getByClassName = async (payload) => {
   return data;
 };
 exports.deleteByClassName = async (payload) => {
-  const data = classes.deleteOne({ name: payload });
-  return "Successfully deleted";
+  const data =await classes.deleteOne({ name: payload });
+  return data;
 };
 exports.updateClassTeacherByClassName = async (payload, user) => {
   const data = await classes.updateOne(

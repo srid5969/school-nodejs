@@ -48,16 +48,13 @@ module.exports = async (req, res, next) => {
   } else if (originalUrl == "/user/logout") {
     // console.log(Token);
     if (Token) {
-      let TokenData = await userToken
-        .findOne({ token: Token })
-        .populate({ path: "users" });
       const TokenIsValid = await userToken.findOne({ token: Token });
       if (TokenIsValid) {
         await userToken.findOneAndUpdate(
           { token: Token },
           { status: "Inactive" }
         );
-        await event.emit("inactive", await TokenIsValid.users);
+         event.emit("inactive",  TokenIsValid.users);
         next();
       } else {
         res.json("Token Is not valid");

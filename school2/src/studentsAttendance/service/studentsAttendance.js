@@ -4,7 +4,7 @@ exports.getAll = () => {
   return students.find();
 };
 
-exports.register = (ClassId, StudentId, Status, Dates, CreateDate) => {
+exports.register = async({ClassId, StudentId, Status, Dates, CreateDate}) => {
   const data = new students({
     classid: ClassId,
     studentId: StudentId,
@@ -12,6 +12,7 @@ exports.register = (ClassId, StudentId, Status, Dates, CreateDate) => {
     dates: Dates,
     createDate: CreateDate,
   });
+  return await data.save()
 };
 exports.deleteStudentsAttendance = async (payload) => {
   const data = students.deleteOne({ studentId: payload });
