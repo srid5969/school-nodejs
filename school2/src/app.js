@@ -7,6 +7,8 @@ const studentsAttendance = require("./studentsAttendance/controller/studentsAtte
 const teachersAttendance = require("./TeacherAttendance/controller/teachersAttendance");
 const students = require("./students/controller/students");
 const commonMiddleware = require("../common/middleware/commonmiddleware");
+const csvController = require("./report/controller/csv_controller");
+
 
 const app = express();
 app.use(express.json());
@@ -26,6 +28,7 @@ app.use("/user", users);
 app.use("/student", studentsAttendance);
 app.use("/teacher", teachersAttendance);
 app.use("/students", students);
+app.use('/csv',csvController)
 app.listen(8080, () => {
   console.log(`Server Started at 8080`);
 });
