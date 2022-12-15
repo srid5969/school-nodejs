@@ -2,7 +2,8 @@ const bcrypt = require("bcrypt");
 const users = require("../model/users");
 
 exports.getAll = () => {
-  return users.find();
+  // return users.find({},{ projection: { _id: 0 } })
+  return users.find().select(" _id firstName lastName phone phoneCode gender role address1 address2 city state pincode status");
 };
 
 exports.register = (datas) => {

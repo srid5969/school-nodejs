@@ -12,7 +12,7 @@ router.get("/all", async (req, res) => {
 router.post("/", async (req, res) => {
   const r = req.body;
   service
-    .get((r.UserId, r.Status, r.Dates, r.Createdate))
+    .register((req.body))
     .then((data) => res.json(data))
     .catch((err) => res.json(err));
 });

@@ -1,17 +1,18 @@
+const momentTimezone = require("moment-timezone");
+
 const teachers = require("../model/teachersAttendance");
 
 exports.getAll = () => {
   return teachers.find();
 };
 
-exports.register = (payload) => {
-  const { UserId, Status, Dates, CreateDate } = payload;
+exports.register = ({ userId, status, date}) => {
   const data = new teachers({
-    userId: UserId,
-    status: Status,
-    date: Dates,
-    createDate: CreateDate,
+    userId,
+    status,
+    date,
   });
+  return data.save()
 };
 exports.deleteTeachersById = async (payload) => {
   const data = await teachers.findByIdAndDelete(payload);
