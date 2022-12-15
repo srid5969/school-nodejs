@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const moment = require("moment-timezone");
+
 
 const classesSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -8,8 +10,8 @@ const classesSchema = new mongoose.Schema({
     required: true,
   },
   createDate: {
-    type: Date,
-    default: Date.now,
-  },
+    type: String,
+    default:moment().format("YYYY-MM-DD hh:mm ")
+  }
 });
 module.exports = mongoose.model("classes", classesSchema);

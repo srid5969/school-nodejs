@@ -91,7 +91,7 @@ exports.deleteByEmail = async (user) => {
 exports.generateCsvReportForAllUser = async () => {
   const csvWriter = createCsvWriter({
     // path: "src/users/csvreport/allusers.csv",
-    path:"school2/csv/allUsers.csv",
+    path: "school2/csv/allUsers.csv",
     header: [
       { id: "_id", title: "ID\t\t\t\t\t\t" },
       { id: "firstName", title: "FirstName\t\t" },
@@ -111,11 +111,15 @@ exports.generateCsvReportForAllUser = async () => {
       { id: "createDate", title: "CreatedDate\t\t" },
     ],
   });
-  await csvWriter.writeRecords(await users.find()).then(() => {
-    console.log("...Done");
-    return "Generated"
-  }).catch((err)=>{
-    console.log(err)
-    return err
-  })
+
+  await csvWriter
+    .writeRecords(await users.find())
+    .then(() => {
+      console.log("...Done");
+      return "Generated";
+    })
+    .catch((err) => {
+      console.log(err);
+      return err;
+    });
 };

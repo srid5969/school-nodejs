@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const moment = require("moment-timezone");
 
 const StudentsSchema = new mongoose.Schema({
   firstName: {
@@ -43,10 +44,9 @@ const StudentsSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  createdate: {
-    type: Date,
-    default: Date.now,
-    required: true,
+  createDate: {
+    type: String,
+    default: moment().format("YYYY-MM-DD hh:mm"),
   },
 });
 module.exports = mongoose.model("Students", StudentsSchema);

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const moment = require('moment-timezone');
 
 
 const usersSchema = new mongoose.Schema({
@@ -37,8 +38,8 @@ const usersSchema = new mongoose.Schema({
     required: true,
   },
   createDate: {
-    type: Date,
-    default: Date.now,
+    type: String,
+    default:moment().format("YYYY-MM-DD hh:mm")
   },
   role:{
     type: String,
