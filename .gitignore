@@ -1,5 +1,2 @@
 node_modules
-school2/common/middleware/login.js
-school2/common/middleware/token.js
-school2/common/middleware/tokenlogin.js
-school2/common/middleware/userslogin.js
+

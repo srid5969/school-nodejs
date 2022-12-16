@@ -8,12 +8,8 @@ const teachersAttendance = require("./TeacherAttendance/controller/teachersAtten
 const students = require("./students/controller/students");
 const commonMiddleware = require("../common/middleware/commonmiddleware");
 const csvController = require("./report/controller/csv_controller");
-
-
 const app = express();
 app.use(express.json());
-
-
 mongoose.connect(manager);
 const database = mongoose.connection;
 database.on("error", (error) => {
@@ -22,13 +18,13 @@ database.on("error", (error) => {
 database.once("connected", () => {
   console.log("Database Connected");
 });
-app.use(commonMiddleware);
+// app.use(commonMiddleware);
 app.use("/class", classes);
 app.use("/user", users);
 app.use("/student", studentsAttendance);
 app.use("/teacher", teachersAttendance);
 app.use("/students", students);
-app.use('/csv',csvController)
+app.use("/csv", csvController);
 app.listen(8080, () => {
   console.log(`Server Started at 8080`);
 });

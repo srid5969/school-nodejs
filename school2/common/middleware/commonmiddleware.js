@@ -2,10 +2,9 @@ const bcrypt = require("bcrypt");
 const users = require("../../src/users/model/users");
 const userToken = require("../../src/usertoken/model/usertoken");
 const event = require("../events/users");
-
 module.exports = async (req, res, next) => {
   let originalUrl = req.originalUrl;
-  console.log(`\n\n \t 192.168.0.123:8080${originalUrl} \t ${req.method}`);
+  console.log(`\n\n \t http://192.168.0.123:8080${originalUrl} \t ${req.method}`);
   let username = req.body.username;
   let password = req.body.password;
   let Token = req.headers.authorization;

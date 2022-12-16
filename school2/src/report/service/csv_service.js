@@ -1,7 +1,6 @@
 const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 const momentTime = require("moment-timezone")();
 const students = require("../../students/model/students");
-
 const moment = momentTime.format("YYYY-MM-DD hh:mm");
 const users = require("../../users/model/users");
 const teachersAttendance = require("../../TeacherAttendance/model/teachersAttendance");
@@ -41,7 +40,7 @@ exports.generateCsvReportForAllUser = async () => {
       console.log(err);
       return err;
     });
-};
+};//1
 exports.generateListOfTeachers = async (req, res) => {
   const csvWriter = createCsvWriter({
     path: "school2/csv/generateListOfTeachers.csv",
@@ -63,13 +62,12 @@ exports.generateListOfTeachers = async (req, res) => {
       console.log("...Done");
       res.json({ message: "Generated Report" });
     });
-};
+};//2
 exports.generate_a_Report_For_Particular_Teacher = async (data) => {
   const record = await users.find({
     role: "Teacher",
     _id: data,
   });
-  console.log(record);
   const location = "school2/csv/Report_of_" + data + ".csv";
   const csvWriter = createCsvWriter({
     path: location,
@@ -96,9 +94,8 @@ exports.generate_a_Report_For_Particular_Teacher = async (data) => {
     console.log("...Done");
     return { message: "Generated Report" };
   });
-};
-exports.generate_a_Report_For_Particular_Teacher_attendance_for_yesterday =
-  async (teacher = "63889da3fb6a02327e9671f2") => {
+};//3
+exports.generate_a_Report_For_Particular_Teacher_attendance_for_yesterday =async (teacher) => {
     let record = [];
     record[0] = await (
       await teachersAttendance.find({ userId: teacher })
@@ -123,15 +120,13 @@ exports.generate_a_Report_For_Particular_Teacher_attendance_for_yesterday =
       console.log("...Done");
       return { message: "Generated Report" };
     });
-  };
+  };//4
 exports.get_monthly_report_for_a_teacher = async (teacher, month) => {
   const record = await (
     await teachersAttendance.find({ userId: teacher })
   ).filter((data) => {
-    console.log(data.createDate.substring(5, 7));
     if (data.createDate.substring(5, 7) == month) return data;
   });
-  console.log(record);
   const location =
     "school2/csv/_Report_For_" + teacher + "__for_" + month + ".csv";
   const csvWriter = createCsvWriter({
@@ -145,15 +140,13 @@ exports.get_monthly_report_for_a_teacher = async (teacher, month) => {
   csvWriter.writeRecords(record).then(() => {
     console.log("...Done");
   });
-};
+};//5
 exports.get_monthly_report_for_a_teacher = async (teacher, year) => {
   const record = await (
     await teachersAttendance.find({ userId: teacher })
   ).filter((data) => {
-    console.log(data.createDate.substring(5, 7));
     if (data.createDate.substring(0, 4) == year) return data;
   });
-  console.log(record);
   const location =
     "school2/csv/_Report_For_" + teacher + "__for_year" + year + ".csv";
   const csvWriter = createCsvWriter({
@@ -167,15 +160,13 @@ exports.get_monthly_report_for_a_teacher = async (teacher, year) => {
   csvWriter.writeRecords(record).then(() => {
     console.log("...Done");
   });
-};
+};//6
 exports.get_monthly_report_for_a_student = async (studentiid, month) => {
   const record = await (
     await studentsAttendance.find({ studentId: studentiid })
   ).filter((data) => {
-    console.log(data.createDate.substring(5, 7));
     if (data.createDate.substring(5, 7) == month) return data;
   });
-  console.log(record);
   const location =
     "school2/csv/_Report_For_" + studentiid + "__for_year" + month + ".csv";
   const csvWriter = createCsvWriter({
@@ -189,15 +180,13 @@ exports.get_monthly_report_for_a_student = async (studentiid, month) => {
   csvWriter.writeRecords(record).then(() => {
     console.log("...Done");
   });
-};
+};//7
 exports.get_yearly_report_for_a_student = async (studentId, year) => {
   const record = await (
     await studentsAttendance.find({ studentId })
   ).filter((data) => {
-    console.log(data.createDate.substring(5, 7));
     if (data.createDate.substring(0, 4) == year) return data;
   });
-  console.log(record);
   const location =
     "school2/csv/_Report_For_" + studentId + "__for_year" + year + ".csv";
   const csvWriter = createCsvWriter({
@@ -211,7 +200,7 @@ exports.get_yearly_report_for_a_student = async (studentId, year) => {
   csvWriter.writeRecords(record).then(() => {
     console.log("...Done");
   });
-};
+};//8
 exports.generateListOfStudents = async () => {
   const csvWriter = createCsvWriter({
     path: "school2/csv/generateListOfStudents.csv",
@@ -226,4 +215,4 @@ exports.generateListOfStudents = async () => {
   csvWriter.writeRecords(await students.find()).then(() => {
     console.log("...Done");
   });
-};
+};//9
