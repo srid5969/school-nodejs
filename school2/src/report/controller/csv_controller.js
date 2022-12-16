@@ -24,3 +24,26 @@ router.get("/teacher/attendance/:id", async (req, res) => {
     .catch((data) => res.json(data))
     .then((data) => res.json(data));
 });
+router.get("/teacher/attendance/:id/month/:month", async (req, res) => {
+  service
+    .get_monthly_report_for_a_teacher(req.params.id, req.params.month)
+    .then(() => res.json({ message: "Successfully Generated" }));
+});
+router.get("/teacher/attendance/:id", async (req, res) => {
+  service
+    .generate_a_Report_For_Particular_Teacher_attendance_for_yesterday(
+      req.params.id
+    )
+    .catch((data) => res.json(data))
+    .then((data) => res.json(data));
+});
+router.get("/student/attendance/:id/month/:month", async (req, res) => {
+  service
+    .get_monthly_report_for_a_student(req.params.id, req.params.month)
+    .then(() => res.json({ message: "Successfully Generated" }));
+});
+router.get("/student/attendance/:id/year/:year", async (req, res) => {
+  service
+    .get_yearly_report_for_a_student(req.params.id, req.params.year)
+    .then(() => res.json({ message: "Successfully Generated" }));
+});
