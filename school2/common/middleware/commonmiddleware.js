@@ -7,41 +7,48 @@ module.exports = async (req, res, next) => {
   console.log(
     `\n\n \t http://192.168.0.123:8080${originalUrl} \t ${req.method}`
   );
-  let username = req.body.username;
+  let username = req.body.firstName;
   let password = req.body.password;
   let Token = req.headers.authorization;
-  if (originalUrl.includes('/download/')) {
+  if (originalUrl.includes("/download/")) {
     next();
   } else if (originalUrl === "/user/login") {
+
     if (username && password) {
-      const data1 = await users.findOne({ email: username });
-      const data = await data1.password;
-      event.emit("active", data1._id);
-      if (data && data1) {
-        const Data = await bcrypt.compare(password, data);
-        if (Data) {
-          const id = data1._id;
-          await userToken.deleteMany({ users: id });
-          const N = 30;
-          const generatedToken = await Array(N + 1)
-            .join((Math.random().toString(36) + "8782").slice(2, 18))
-            .slice(0, N);
-          const token = await userToken({
-            users: data1,
-            token: generatedToken,
-            status: "Active",
-          });
-          usersTokenWithPassword = await token.save();
-          let result = usersTokenWithPassword;
-          result = result.toObject();
-          delete result.users.password;
-          usersToken = result;
-          next();
+      const data1 = await users.findOne({ firstName: username });
+      if (data1) {
+        const data = await data1.password;
+        event.emit("active", data1._id);
+        if (data && data1) {
+          const Data = await bcrypt.compare(password, data);
+          if (Data) {
+            const id = data1._id;
+            await userToken.deleteMany({ users: id });
+            const N = 30;
+            const generatedToken = await Array(N + 1)
+              .join((Math.random().toString(36) + "8782").slice(2, 18))
+              .slice(0, N);
+            const token = await userToken({
+              users: data1,
+              token: generatedToken,
+              status: "Active",
+            });
+            usersTokenWithPassword = await token.save();
+            console.log('\t ',usersTokenWithPassword.users.firstName, '\t: Has Logged in')
+            console.log('\t Login Time\t:',usersTokenWithPassword.createDate)
+            let result = usersTokenWithPassword;
+            result = result.toObject();
+            delete result.users.password;
+            usersToken = result;
+            next();
+          } else {
+            res.json("Wrong password please check the password");
+          }
         } else {
-          res.json("Wrong password please check the password");
+          res.json("Please add username and password");
         }
       } else {
-        res.json("Please add username and password");
+        res.status(400).send({ mes: "user cannot be found" });
       }
     } else {
       res.json("Please add username and password");

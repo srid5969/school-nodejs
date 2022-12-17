@@ -7,40 +7,38 @@ exports.getAll = () => {
 };
 
 exports.register = (datas) => {
-  const {
-    FirstName,
-    LastName,
-    Phone,
-    PhoneCode,
-    Email,
-    Password,
-    Gender,
-    DOB,
-    Role,
-    Address1,
-    Address2,
-    City,
-    State,
-    Pincode,
-    Status,
-  } = datas;
-
+  
+const { firstName,
+  lastName,
+  phone,
+  phoneCode,
+  email,
+  password,
+  gender,
+  dob,
+  role,
+  address1,
+  address2,
+  city,
+  state,
+  pincode,
+  status}=datas
   const data = new users({
-    firstName: FirstName,
-    lastName: LastName,
-    phone: Phone,
-    phoneCode: PhoneCode,
-    email: Email,
-    password: Password,
-    gender: Gender,
-    dob: DOB,
-    role: Role,
-    address1: Address1,
-    address2: Address2,
-    city: City,
-    state: State,
-    pincode: Pincode,
-    status: Status,
+    firstName,
+    lastName,
+    phone,
+    phoneCode,
+    email,
+    password,
+    gender,
+    dob,
+    role,
+    address1,
+    address2,
+    city,
+    state,
+    pincode,
+    status
   });
 
   return data.save();

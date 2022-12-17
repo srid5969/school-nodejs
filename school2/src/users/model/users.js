@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-const moment = require('moment-timezone');
-
+const moment = require("moment-timezone");
 
 const usersSchema = new mongoose.Schema({
   firstName: {
     type: String,
     required: true,
+    unique: true,
   },
   lastName: {
     type: String,
@@ -39,46 +39,46 @@ const usersSchema = new mongoose.Schema({
   },
   createDate: {
     type: String,
-    default:moment().format("YYYY-MM-DD hh:mm")
+    default: moment().format("YYYY-MM-DD hh:mm"),
   },
-  role:{
+  role: {
     type: String,
-    required: true
+    required: true,
   },
-  address1:{
+  address1: {
     type: String,
-    required: true
+    required: true,
   },
-  address2:{
+  address2: {
     type: String,
-    required: true
+    required: true,
   },
-  city:{
+  city: {
     type: String,
-    required: true
+    required: true,
   },
-  state:{
+  state: {
     type: String,
-    required: true
+    required: true,
   },
-  pincode:{
+  pincode: {
     type: Number,
-    required: true
+    required: true,
   },
-  status:{
+  status: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 
-usersSchema.pre('save' ,async function (next){
-try {
-	const salt = await bcrypt.genSalt(10)
-	const hashedPassword=await bcrypt.hash(this.password,salt)
-	this.password=hashedPassword
-	next()
-} catch (error) {
-	next(error)
-}
-})
+usersSchema.pre("save", async function (next) {
+  try {
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(this.password, salt);
+    this.password = hashedPassword;
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
 module.exports = mongoose.model("users", usersSchema);
