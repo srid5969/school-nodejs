@@ -4,12 +4,15 @@ const userToken = require("../../src/usertoken/model/usertoken");
 const event = require("../events/users");
 module.exports = async (req, res, next) => {
   let originalUrl = req.originalUrl;
-  console.log(`\n\n \t http://192.168.0.123:8080${originalUrl} \t ${req.method}`);
+  console.log(
+    `\n\n \t http://192.168.0.123:8080${originalUrl} \t ${req.method}`
+  );
   let username = req.body.username;
   let password = req.body.password;
   let Token = req.headers.authorization;
-
-  if (originalUrl === "/user/login") {
+  if (originalUrl.includes('/download/')) {
+    next();
+  } else if (originalUrl === "/user/login") {
     if (username && password) {
       const data1 = await users.findOne({ email: username });
       const data = await data1.password;
@@ -53,7 +56,7 @@ module.exports = async (req, res, next) => {
           { token: Token },
           { status: "Inactive" }
         );
-         event.emit("inactive",  TokenIsValid.users);
+        event.emit("inactive", TokenIsValid.users);
         next();
       } else {
         res.json("Token Is not valid");
