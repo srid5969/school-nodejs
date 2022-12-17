@@ -14,7 +14,7 @@ router.post("/signup", async (req, res) => {
 });
 router.post("/login", async (req, res) => {
   // const data=service.userlogin(userDeatail)
-  res.json(usersToken);
+  res.status(201).json(usersToken);
 });
 router.post("/logout", (req, res) => {
   res.json({ message: "Thank you" });

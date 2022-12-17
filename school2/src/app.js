@@ -10,14 +10,13 @@ const students = require("./students/controller/students");
 const commonMiddleware = require("../common/middleware/commonmiddleware");
 const csvController = require("./report/controller/csv_controller");
 const email = require("./report/emailcontroller/email");
-
-
 const app = express();
 app.use(express.json());
-app.use(cors({
-  origin: "*",
-})
-)
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 mongoose.connect(manager);
 const database = mongoose.connection;
 database.on("error", (error) => {
@@ -27,9 +26,8 @@ database.once("connected", () => {
   console.log("Database Connected");
 });
 app.use(commonMiddleware);
-
-app.use(express.urlencoded({ extended: true })); 
-app.use('/download',email)
+app.use(express.urlencoded({ extended: true }));
+app.use("/download", email);
 app.use("/class", classes);
 app.use("/user", users);
 app.use("/student", studentsAttendance);
