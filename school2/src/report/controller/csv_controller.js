@@ -19,39 +19,39 @@ router.get("/teachers/bio/", async (req, res) => {
 router.get("/teacher/attendance/:id", async (req, res) => {
   service
     .generate_a_Report_For_Particular_Teacher_attendance_for_yesterday(
-      req.params.id
+      req.params.id,userDetail.email
     )
     .catch((data) => res.json(data))
     .then((data) => res.json(data));
 }); //4
 router.get("/teacher/attendance/:id/month/:month", async (req, res) => {
   service
-    .get_monthly_report_for_a_teacher(req.params.id, req.params.month)
+    .get_monthly_report_for_a_teacher(req.params.id, req.params.month,userDetail.email)
     .then(() => res.json({ message: "Successfully Generated" }));
 }); //5
 router.get("/teacher/attendance/:id", async (req, res) => {
   service
     .generate_a_Report_For_Particular_Teacher_attendance_for_yesterday(
-      req.params.id
+      req.params.id,userDetail.email
     )
     .catch((data) => res.json(data))
     .then((data) => res.json(data));
 }); //6
 router.get("/student/attendance/:id/month/:month", async (req, res) => {
   service
-    .get_monthly_report_for_a_student(req.params.id, req.params.month)
+    .get_monthly_report_for_a_student(req.params.id, req.params.month,userDetail.email)
     .then(() => res.json({ message: "Successfully Generated" }));
 }); //7
 router.get("/student/attendance/:id/year/:year", async (req, res) => {
   service
-    .get_yearly_report_for_a_student(req.params.id, req.params.year)
+    .get_yearly_report_for_a_student(req.params.id, req.params.year,userDetail.email)
     .then(() => res.json({ message: "Successfully Generated" }));
 }); //8
 router.get("/teacher/attendance/:id", async (req, res) => {
   service
-    .generate_a_Report_For_Particular_Teacher(req.params.id)
+    .generate_a_Report_For_Particular_Teacher(req.params.id,userDetail.email)
     .then(() => res.json({ message: "Success" }));
 });
-router.get("/allUsers", async (_req, res) => {
-  res.sendFile("allUsers.csv", { root: "school2/csv/" });
-});
+// router.get("/allUsers", async (_req, res) => {
+//   res.sendFile("allUsers.csv", { root: "school2/csv/" });
+// });

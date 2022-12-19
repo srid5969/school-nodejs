@@ -12,19 +12,13 @@ const csvController = require("./report/controller/csv_controller");
 const email = require("./report/emailcontroller/email");
 const app = express();
 app.use(express.json());
-app.use(
-  cors({
-    origin: "*",
-  })
-);
+app.use(cors({ origin: "*" }));
 mongoose.connect(manager);
 const database = mongoose.connection;
-database.on("error", (error) => {
-  console.log(error);
-});
-database.once("connected", () => {
-  console.log("Database Connected");
-});
+
+database.on("error", (error) => console.error());
+database.once("connected", () => {  console.log("Database Connected");});
+
 app.use(commonMiddleware);
 app.use(express.urlencoded({ extended: true }));
 app.use("/download", email);
@@ -34,6 +28,5 @@ app.use("/student", studentsAttendance);
 app.use("/teacher", teachersAttendance);
 app.use("/students", students);
 app.use("/csv", csvController);
-app.listen(8080, () => {
-  console.log(`Server Started at 8080`);
-});
+
+app.listen(8080, () => {console.log(`Server Started at 8080`);});

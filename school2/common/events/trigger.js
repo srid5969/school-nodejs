@@ -3,7 +3,7 @@ const email = require("./email");
 
 var eventEmitter = new EventEmitter();
 
-eventEmitter.on("emailAllUser", (async (emailid='sridhar@innovixtech.com', link) => {
+eventEmitter.on("emailAllUser", (async (emailid, link) => {
   email.sendMail(emailid, link);
 }))
 module.exports = eventEmitter;

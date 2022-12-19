@@ -2,16 +2,18 @@ const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 const momentTime = require("moment-timezone")();
 const students = require("../../students/model/students");
 const trigger = require("../../../common/events/trigger");
-const commonLocation='school2/csv/'
+const commonLocation = "school2/csv/";
 const moment = momentTime.format("YYYY-MM-DD hh:mm");
 const users = require("../../users/model/users");
 const teachersAttendance = require("../../TeacherAttendance/model/teachersAttendance");
 const studentsAttendance = require("../../studentsAttendance/model/studentsAttendance");
 const yesterday = momentTime.subtract(1, "days").format("YYYY-MM-DD hh:mm");
-
+const commonLink = "http://192.168.0.123:8080/download/";
 exports.generateCsvReportForAllUser = async (email) => {
+  const fileName = "allUsers.csv";
+
   const csvWriter = createCsvWriter({
-    path: commonLocation+"allUsers.csv",
+    path: commonLocation + fileName,
     header: [
       { id: "_id", title: "ID" },
       { id: "firstName", title: "FirstName" },
@@ -35,7 +37,7 @@ exports.generateCsvReportForAllUser = async (email) => {
   await csvWriter
     .writeRecords(await users.find())
     .then(() => {
-      trigger.emit("emailAllUser", email,'http://192.168.0.123:8080/download/allUsers');
+      trigger.emit("emailAllUser", email, commonLink + fileName);
       console.log("...Done");
       return "Generated";
     })
@@ -45,8 +47,9 @@ exports.generateCsvReportForAllUser = async (email) => {
     });
 }; //1
 exports.generateListOfTeachers = async (req, res) => {
+  const fileName = "generateListOfTeachers.csv";
   const csvWriter = createCsvWriter({
-    path: commonLocation+"generateListOfTeachers.csv",
+    path: commonLocation + fileName,
     header: [
       { id: "firstName", title: "FirstName" },
       { id: "lastName", title: "LastName" },
@@ -63,17 +66,18 @@ exports.generateListOfTeachers = async (req, res) => {
     )
     .then(() => {
       console.log("...Done");
+      trigger.emit("emailAllUser", email, (commonLink + fileName));
       res.json({ message: "Generated Report" });
     });
 }; //2
-exports.generate_a_Report_For_Particular_Teacher = async (data) => {
+exports.generate_a_Report_For_Particular_Teacher = async (data,email) => {
   const record = await users.find({
     role: "Teacher",
     _id: data,
   });
-  const location = commonLocation+"Report_of_" + data + ".csv";
+  const fileName = "Report_of_" + data + ".csv";
   const csvWriter = createCsvWriter({
-    path: location,
+    path: location + fileName,
     header: [
       { id: "_id", title: "ID" },
       { id: "firstName", title: "FirstName" },
@@ -95,11 +99,12 @@ exports.generate_a_Report_For_Particular_Teacher = async (data) => {
   });
   csvWriter.writeRecords(record).then(() => {
     console.log("...Done");
+    trigger.emit("emailAllUser", email, commonLink + fileName);
     return { message: "Generated Report" };
   });
 }; //3
 exports.generate_a_Report_For_Particular_Teacher_attendance_for_yesterday =
-  async (teacher) => {
+  async (teacher,email) => {
     let record = [];
     record[0] = await (
       await teachersAttendance.find({ userId: teacher })
@@ -108,10 +113,9 @@ exports.generate_a_Report_For_Particular_Teacher_attendance_for_yesterday =
         return data;
       }
     });
-    const location =
-    commonLocation+"_Report_For_" + teacher + "__for_yesterday.csv";
+    const fileName = "_Report_For_" + teacher + "__for_yesterday.csv";
     const csvWriter = createCsvWriter({
-      path: location,
+      path: commonLocation + fileName,
       header: [
         { id: "firstName", title: "FirstName" },
         { id: "lastName", title: "LastName" },
@@ -122,19 +126,20 @@ exports.generate_a_Report_For_Particular_Teacher_attendance_for_yesterday =
     });
     csvWriter.writeRecords(record).then(() => {
       console.log("...Done");
+      trigger.emit("emailAllUser", email, commonLink + fileName);
+
       return { message: "Generated Report" };
     });
   }; //4
-exports.get_monthly_report_for_a_teacher = async (teacher, month) => {
+exports.get_monthly_report_for_a_teacher = async (teacher, month,email) => {
   const record = await (
     await teachersAttendance.find({ userId: teacher })
   ).filter((data) => {
     if (data.createDate.substring(5, 7) == month) return data;
   });
-  const location =
-  commonLocation+"_Report_For_" + teacher + "__for_" + month + ".csv";
+  const fileName = "_Report_For_" + teacher + "__for_" + month + ".csv";
   const csvWriter = createCsvWriter({
-    path: location,
+    path: commonLocation + fileName,
     header: [
       { id: "_userId", title: "ID" },
       { id: "createDate", title: "At" },
@@ -142,6 +147,8 @@ exports.get_monthly_report_for_a_teacher = async (teacher, month) => {
     ],
   });
   csvWriter.writeRecords(record).then(() => {
+    trigger.emit("emailAllUser", email, commonLink + fileName);
+
     console.log("...Done");
   });
 }; //5
@@ -151,10 +158,9 @@ exports.get_monthly_report_for_a_teacher = async (teacher, year) => {
   ).filter((data) => {
     if (data.createDate.substring(0, 4) == year) return data;
   });
-  const location =
-  commonLocation+"_Report_For_" + teacher + "__for_year" + year + ".csv";
+  const fileName = "_Report_For_" + teacher + "__for_year" + year + ".csv";
   const csvWriter = createCsvWriter({
-    path: location,
+    path: commonLocation + fileName,
     header: [
       { id: "_userId", title: "ID" },
       { id: "createDate", title: "At" },
@@ -162,19 +168,20 @@ exports.get_monthly_report_for_a_teacher = async (teacher, year) => {
     ],
   });
   csvWriter.writeRecords(record).then(() => {
+    trigger.emit("emailAllUser", email, commonLink + fileName);
+
     console.log("...Done");
   });
 }; //6
-exports.get_monthly_report_for_a_student = async (studentId, month) => {
+exports.get_monthly_report_for_a_student = async (studentId, month,email) => {
   const record = await (
     await studentsAttendance.find({ studentId: studentId })
   ).filter((data) => {
     if (data.createDate.substring(5, 7) == month) return data;
   });
-  const location =
-  commonLocation+"_Report_For_" + studentId + "__for_year" + month + ".csv";
+  const fileName = "_Report_For_" + studentId + "__for_year" + month + ".csv";
   const csvWriter = createCsvWriter({
-    path: location,
+    path: commonLocation + fileName,
     header: [
       { id: "studentId", title: "ID" },
       { id: "createDate", title: "At" },
@@ -182,19 +189,20 @@ exports.get_monthly_report_for_a_student = async (studentId, month) => {
     ],
   });
   csvWriter.writeRecords(record).then(() => {
+    trigger.emit("emailAllUser", email, commonLink + fileName);
+
     console.log("...Done");
   });
 }; //7
-exports.get_yearly_report_for_a_student = async (studentId, year) => {
+exports.get_yearly_report_for_a_student = async (studentId, year,email) => {
   const record = await (
     await studentsAttendance.find({ studentId })
   ).filter((data) => {
     if (data.createDate.substring(0, 4) == year) return data;
   });
-  const location =
-  commonLocation+"_Report_For_" + studentId + "__for_year" + year + ".csv";
+  const fileName = "_Report_For_" + studentId + "__for_year" + year + ".csv";
   const csvWriter = createCsvWriter({
-    path: location,
+    path: commonLocation,
     header: [
       { id: "studentId", title: "ID" },
       { id: "createDate", title: "At" },
@@ -202,12 +210,15 @@ exports.get_yearly_report_for_a_student = async (studentId, year) => {
     ],
   });
   csvWriter.writeRecords(record).then(() => {
+    trigger.emit("emailAllUser", email, commonLink + fileName);
+
     console.log("...Done");
   });
 }; //8
 exports.generateListOfStudents = async () => {
+  const fileName = "generateListOfStudents.csv";
   const csvWriter = createCsvWriter({
-    path: commonLocation+"generateListOfStudents.csv",
+    path: commonLocation + fileName,
     header: [
       { id: "firstName", title: "FirstName" },
       { id: "classid", title: "classid" },
@@ -217,6 +228,8 @@ exports.generateListOfStudents = async () => {
     ],
   });
   csvWriter.writeRecords(await students.find()).then(() => {
+    trigger.emit("emailAllUser", email, commonLink + fileName);
+
     console.log("...Done");
   });
 }; //9
