@@ -1,9 +1,9 @@
 const students = require("../model/students");
+const classes = require("../../classes/model/classes");
 
 exports.getAll = () => {
   return students.find();
 };
-
 exports.findStudentByfirstName = () => {
   const { FirstName } = datas;
   const data = new students({
@@ -11,32 +11,9 @@ exports.findStudentByfirstName = () => {
   });
   return data.find();
 };
-
 exports.register =async (datas) => {
-  const {
-    firstName,
-    lastName,
-    classid,
-    dob,
-    fathername,
-    mothername,
-    address2,
-    address1,
-    city,
-    pincode,
-  } = datas;
-  const data = new students({
-    firstName,
-    lastName,
-    classid,
-    dob,
-    fathername,
-    mothername,
-    address2,
-    address1,
-    city,
-    pincode,
-  });
+ datas.classid=await classes.findOne({name:datas.classid})
+  const data = new students(datas);
   return await data.save();
 };
 exports.updateStudentDetailsById = async (id, datas) => {

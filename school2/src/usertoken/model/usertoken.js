@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-const moment = require('moment-timezone');
+const moment = require("moment-timezone");
+
 const userSchema = new mongoose.Schema({
   users: {
     type: mongoose.Types.ObjectId,
@@ -8,8 +9,7 @@ const userSchema = new mongoose.Schema({
   },
   createDate: {
     type: String,
-    default:moment().format("YYYY-MM-DD hh:mm")
-    ,
+    default: moment().format("YYYY-MM-DD hh:mm"),
   },
   token: {
     type: String,
@@ -32,10 +32,17 @@ userSchema.methods.generateToken = function () {
 userSchema.pre("save", async function (next) {
   try {
     const N = 10;
-    const data = Array(N + 1)
+    const data = await Array(N + 1)
       .join((Math.random().toString(36) + "8782").slice(2, 18))
       .slice(0, N);
-    this.token = await data;
+
+    try {
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(data, salt);
+     this.token =await hashedPassword
+    } catch (error) {
+      next(error);
+    }
     this.status = "Active";
     next();
   } catch (error) {

@@ -8,31 +8,29 @@ const users = require("../../users/model/users");
 //     classTeacher:deatail,
 //   });
 //  return data.save();
-
 // };
-exports.assignTeacher = async (className, teacher) => {
-  const teacherData = await users.findById(teacher);
+exports.assignTeacher = async (Data) => {
+  const teacherData = await users.findOne(Data.teacher);
+  console.log(teacherData)
   const data = await classes.create({
     classTeacher: teacherData,
-    name: className,
+    name: Data.name,
   });
   return await data;
 };
-exports.registerClass = async (Name, user) => {
-  // console.log(user);
+exports.registerClass = async (name, classTeacher) => {
+
   const data = await new classes({
-    name: Name,
-    classTeacher: user,
+    name,
+    classTeacher,
   });
-  // console.log("classTeacher");
-  // return data.save();
+
   return data.save();
 };
 exports.getAll = async () => {
   const data = classes.find().populate({ path: "classTeacher" });
   return data;
 };
-
 exports.getByClassName = async (payload) => {
   const data = classes
     .findOne({ name: payload })

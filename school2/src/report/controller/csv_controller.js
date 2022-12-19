@@ -2,7 +2,9 @@ const router = require("express").Router();
 const service = require("../service/csv_service");
 
 module.exports = router;
-router.get("/teachers", service.generateListOfTeachers); //1
+router.get("/teachers",async(req,res)=>{
+  service.generateListOfTeachers(res,userDetail.email)
+}); //1
 
 router.get("/all", async (_req, res) => {
   service

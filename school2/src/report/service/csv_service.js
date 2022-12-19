@@ -46,7 +46,7 @@ exports.generateCsvReportForAllUser = async (email) => {
       return err;
     });
 }; //1
-exports.generateListOfTeachers = async (req, res) => {
+exports.generateListOfTeachers = async (res, email) => {
   const fileName = "generateListOfTeachers.csv";
   const csvWriter = createCsvWriter({
     path: commonLocation + fileName,

@@ -10,7 +10,7 @@ router.post("/", async (req, res) => {
 });
 router.post("/assign", async (req, res) => {
   service
-    .assignTeacher(req.body.name, req.body.classTeacherId)
+    .assignTeacher(req.body)
     .then((data) => res.json(data))
     .catch((err) => res.json(err));
 });

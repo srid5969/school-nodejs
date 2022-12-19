@@ -7,7 +7,7 @@ exports.sendMail = (async(email,link) => {
     service: "gmail",
     auth: {
       user: "joshua@innovixtech.com",
-      pass: "Iitc@1234",
+      pass: "jecdkyumfxctscxf",
     },
   });
   var mailOptions = {

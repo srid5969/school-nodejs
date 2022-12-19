@@ -13,7 +13,6 @@ module.exports = async (req, res, next) => {
   if (originalUrl.includes("/download/")) {
     next();
   } else if (originalUrl === "/user/login") {
-
     if (username && password) {
       const data1 = await users.findOne({ firstName: username });
       if (data1) {
@@ -25,17 +24,28 @@ module.exports = async (req, res, next) => {
             const id = data1._id;
             await userToken.deleteMany({ users: id });
             const N = 30;
-            const generatedToken = await Array(N + 1)
+            const generated_token = await Array(N + 1)
               .join((Math.random().toString(36) + "8782").slice(2, 18))
               .slice(0, N);
+              try {
+                const salt = await bcrypt.genSalt(10);
+                const hashedPassword = await bcrypt.hash(generated_token, salt);
+                generatedToken =await hashedPassword
+              } catch (error) {
+                next(error);
+              }
             const token = await userToken({
               users: data1,
               token: generatedToken,
               status: "Active",
             });
             usersTokenWithPassword = await token.save();
-            console.log('\t ',usersTokenWithPassword.users.firstName, '\t: Has Logged in')
-            console.log('\t Login Time\t:',usersTokenWithPassword.createDate)
+            console.log(
+              "\t ",
+              usersTokenWithPassword.users.firstName,
+              "\t: Has Logged in"
+            );
+            console.log("\t Login Time\t:", usersTokenWithPassword.createDate);
             let result = usersTokenWithPassword;
             result = result.toObject();
             delete result.users.password;
@@ -100,7 +110,7 @@ module.exports = async (req, res, next) => {
       userId = userDetail._id;
       if (Token) {
         if (userDetail.role) {
-          if (userDetail.role === "Teacher") {
+          if (userDetail.role === "Teacher" || userDetail.role === "teacher") {
             if (
               !(
                 originalUrl == "/teacher/all" ||
@@ -116,7 +126,10 @@ module.exports = async (req, res, next) => {
               console.log("\t Access Denied");
               res.status(404).json("user is unauthorized");
             }
-          } else if (userDetail.role === "Principle") {
+          } else if (
+            userDetail.role === "Principle" ||
+            userDetail.role === "principal"
+          ) {
             if (!(originalUrl == "/user/login")) {
               next();
               console.log("\t Token : ", Token, "\n");
@@ -136,6 +149,7 @@ module.exports = async (req, res, next) => {
       }
     } else {
       if (originalUrl !== "/user/login") res.json("Token is invalid");
+      else res.status(400).json({ message: "User is not verified" });
     }
   }
 };

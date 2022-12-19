@@ -1,28 +1,20 @@
 const students = require("../model/studentsAttendance");
-
 exports.getAll = () => {
   return students.find();
 };
-
-exports.register = async({ClassId, StudentId, Status, Dates, CreateDate}) => {
-  const data = new students({
-    classid: ClassId,
-    studentId: StudentId,
-    status: Status,
-    dates: Dates,
-    createDate: CreateDate,
-  });
+exports.register = async(Data) => {
+  const data = new students(Data);
   return await data.save()
 };
-exports.deleteStudentsAttendance = async (payload) => {
-  const data = students.deleteOne({ studentId: payload });
+exports.deleteStudentsAttendance = async (studentId) => {
+  const data = students.deleteOne(studentId);
   return data;
 };
-exports.updateStudentsAttendance = async (stuId, Status) => {
-  const data = students.findByIdAndUpdate({ studentId: stuId }, { status: Status });
+exports.updateStudentsAttendance = async (studentId, status) => {
+  const data = students.findByIdAndUpdate(studentId,status);
   return data;
 };
-exports.findStudentsAttendanceByStudentId = async (payload) => {
-  const data = students.findOne({ studentId: payload });
+exports.findStudentsAttendanceByStudentId = async (studentId) => {
+  const data = students.findOne(studentId);
   return data;
 };

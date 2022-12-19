@@ -18,4 +18,4 @@ const teachersAttendanceSchema = new mongoose.Schema({
     default:moment().format("YYYY-MM-DD hh:mm")
   }
 });
-module.exports = mongoose.model("teacherattendance", teachersAttendanceSchema);
+module.exports = mongoose.model("teacherAttendance", teachersAttendanceSchema);
