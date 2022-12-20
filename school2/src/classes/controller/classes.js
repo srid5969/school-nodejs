@@ -1,7 +1,15 @@
 const router = require("express").Router();
+const students = require("../../students/service/students");
+
 module.exports = router;
 const service = require("../service/classes");
-
+// students.getStudentsListByClassId
+router.get("/students/:id", async (req, res) => {
+  students
+    .getStudentsListByClassId(req.params.id)
+    .then((data) => res.json(data))
+    .catch((err) => res.json(err));
+});
 router.post("/", async (req, res) => {
   service
     .registerClass(req.body.name, userDetail)
@@ -20,21 +28,25 @@ router.get("/all", async (req, res) => {
     .then((data) => res.json(data))
     .catch((err) => res.json(err));
 });
-router.get("/:class", async (req, res) => {
+router.get("/:id", async (req, res) => {
   service
-    .getByClassName(req.params.class)
+    .getByClassId(req.params.id)
     .then((data) => res.json(data))
     .catch((err) => res.json(err));
 });
-router.delete("/:class", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   service
-    .deleteByClassName(req.params.class)
-    .then((data) => res.json(data))
+    .deleteByClassId(req.params.id)
+    .then((data) => {
+      res.json(data);
+    })
     .catch((err) => res.json(err));
 });
-router.patch("/:class", async (req, res) => {
+router.patch("/:id", async (req, res) => {
   service
-    .updateClassTeacherByClassName(req.params.class, userDetail)
-    .then((data) => res.json(data))
+    .updateClassTeacherByClassId(req.params.id, userDetail)
+    .then((data) => {
+      res.json(data);
+    })
     .catch((err) => res.json(err));
 });

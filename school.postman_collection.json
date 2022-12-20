@@ -32,7 +32,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\":\"teacher@gmail.com\",\n    \"password\":\"sridhar\"\n}",
+							"raw": "{\n    \"firstName\":\"sridhar\",\n    \"password\":\"sridhar\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -63,13 +63,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "v8i1m7ecoto8782v8i1m7ecoto8782",
+								"value": "$2b$10$o1nBcIChv2vSW0QYLYB8SOZUprRnpF2b5BLv/PQ/d4QCvMR4XZzXi",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"FirstName\":\"Demo\",\n    \"LastName\":\"CSV\",\n    \"Phone\":7094715969,\n    \"PhoneCode\":91,\n    \"Email\":\"csv@gmail.com\",\n    \"Password\":\"sridhar\",\n    \"Gender\":\"male\",\n    \"DOB\":\"02-09-2001\",\n    \"Role\":\"Teacher\",\n    \"Address1\":\"Alangudi\",\n    \"Address2\":\"Pudukkottai\",\n    \"City\":\"Trichy\",\n    \"State\":\"Tamil Nadu\",\n    \"Pincode\":622301,\n    \"Status\":\"Active\"\n}",
+							"raw": "{\n    \"firstName\":\"Admin\",\n    \"lastName\":\"j\",\n    \"phone\":432197634278,\n    \"phoneCode\":91,\n    \"email\":\"admin@innovixtech.com\",\n    \"password\":\"12345678\",\n    \"gender\":\"male\",\n    \"dob\":\"02-09-1998\",\n    \"role\":\"Admin\",\n    \"address1\":\"Alangudi\",\n    \"address2\":\"Pudukkottai\",\n    \"city\":\"Chennai\",\n    \"state\":\"Tamil Nadu\",\n    \"pincode\":600028,\n    \"status\":\"Active\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -77,9 +77,9 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/user/signup",
+							"raw": "192.168.0.123:8080/user/signup",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
@@ -97,18 +97,28 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "4bxcbjxclqn87824bxcbjxclqn8782",
+								"value": "$2b$10$o1nBcIChv2vSW0QYLYB8SOZUprRnpF2b5BLv/PQ/d4QCvMR4XZzXi",
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"lastName\":\"e\",\n    \"phone\":7094715969,\n    \"phoneCode\":91,\n    \"email\":\"fghjdfjhg@gmail.com\",\n    \"gender\":\"Male\",\n    \"dob\":\"02-09-2010\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "localhost:8080/user",
+							"raw": "192.168.0.123:8080/user/63a14c9e18454145e61dccd7",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
-								"user"
+								"user",
+								"63a14c9e18454145e61dccd7"
 							]
 						}
 					},
@@ -121,14 +131,39 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "v8i1m7ecoto8782v8i1m7ecoto8782",
+								"value": "$2b$10$o1nBcIChv2vSW0QYLYB8SOZUprRnpF2b5BLv/PQ/d4QCvMR4XZzXi",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "localhost:8080/user/all",
+							"raw": "192.168.0.123:8080/user/all",
 							"host": [
-								"localhost"
+								"192.168.0.123"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllTeachers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "$2b$10$o1nBcIChv2vSW0QYLYB8SOZUprRnpF2b5BLv/PQ/d4QCvMR4XZzXi",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "192.168.0.123:8080/user/all",
+							"host": [
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
@@ -151,9 +186,9 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8080/user",
+							"raw": "192.168.0.123:8080/user",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
@@ -175,9 +210,9 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8080/user/logout",
+							"raw": "192.168.0.123:8080/user/logout",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
@@ -189,25 +224,31 @@
 					"response": []
 				},
 				{
-					"name": "AllUsersCsv Generating api",
+					"name": "New Request",
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "f7ekn03wjcf8782f7ekn03wjcf8782",
-								"type": "text"
-							}
-						],
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getbyid",
+					"request": {
+						"method": "GET",
+						"header": [],
 						"url": {
-							"raw": "localhost:8080/user/csv",
+							"raw": "http://192.168.0.123:8080/user/63a14c9e18454145e61dccd7",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"192",
+								"168",
+								"0",
+								"123"
 							],
 							"port": "8080",
 							"path": [
 								"user",
-								"csv"
+								"63a14c9e18454145e61dccd7"
 							]
 						}
 					},
@@ -238,10 +279,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/class/XIIE1324",
+							"raw": "http://192.168.0.123:8080/class/XIIE1324",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
@@ -259,13 +300,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "fbdhxtegcc58782fbdhxtegcc58782",
+								"value": "$2b$10$rjYjOesEaIxMb8sQ6FN4QeJL.rvyA9YYyd/yjdWth0LF4yND.KAWO",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"XIIE1\",\n    \"classTeacher\":\"638b105a0d65a77e5bf3724dre\"\n}",
+							"raw": "{\n    \"name\":\"VIII E\",\n    \"classTeacher\":\"Admin\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -273,9 +314,9 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/class",
+							"raw": "192.168.0.123:8080/class",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
@@ -306,10 +347,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/class/X A",
+							"raw": "http://192.168.0.123:8080/class/X A",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
@@ -332,10 +373,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/class/all",
+							"raw": "http://192.168.0.123:8080/class/all",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
@@ -353,19 +394,19 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "zeww0shkxq8782zeww0shkxq8782ze",
+								"value": "$2b$10$rjYjOesEaIxMb8sQ6FN4QeJL.rvyA9YYyd/yjdWth0LF4yND.KAWO",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "localhost:8080/class/XIIE1324",
+							"raw": "192.168.0.123:8080/class/63a181e2ca3a80662a27c77f",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
 								"class",
-								"XIIE1324"
+								"63a181e2ca3a80662a27c77f"
 							]
 						}
 					},
@@ -378,13 +419,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "zeww0shkxq8782zeww0shkxq8782ze",
+								"value": "vja0o648vc8782vja0o648vc8782vj",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"XIIE1324\",\n    \"classTeacherId\":\"63889da3fb6a02327e9671f2\"\n}",
+							"raw": "{\n    \"name\":\"VIII C\",\n    \"firstName\":\"sundara\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -392,9 +433,9 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/class/assign",
+							"raw": "192.168.0.123:8080/class/assign",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
@@ -417,19 +458,20 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "zeww0shkxq8782zeww0shkxq8782ze",
+								"value": "$2b$10$o1nBcIChv2vSW0QYLYB8SOZUprRnpF2b5BLv/PQ/d4QCvMR4XZzXi",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/student",
+							"raw": "http://192.168.0.123:8080/student/63a049edf1f32ea1913ed3de",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
-								"student"
+								"student",
+								"63a049edf1f32ea1913ed3de"
 							]
 						}
 					},
@@ -456,10 +498,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/students/",
+							"raw": "http://192.168.0.123:8080/students/",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
@@ -477,18 +519,29 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "dpn3x264ssr8782dpn3x264ssr8782",
+								"value": "$2b$10$o1nBcIChv2vSW0QYLYB8SOZUprRnpF2b5BLv/PQ/d4QCvMR4XZzXi",
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\":\"Cheku\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "localhost:8080/student",
+							"raw": "http://192.168.0.123:8080/students/63a049edf1f32ea1913ed3de",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
-								"student"
+								"students",
+								"63a049edf1f32ea1913ed3de"
 							]
 						}
 					},
@@ -506,9 +559,9 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8080/student",
+							"raw": "192.168.0.123:8080/student",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
@@ -525,15 +578,15 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "h9dlx8gup8w8782h9dlx8gup8w8782",
+								"value": "$2b$10$o1nBcIChv2vSW0QYLYB8SOZUprRnpF2b5BLv/PQ/d4QCvMR4XZzXi",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/students/all",
+							"raw": "http://192.168.0.123:8080/students/all",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
@@ -570,13 +623,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/studentsattendance",
+							"raw": "192.168.0.123:8080/student/attendance",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
-								"studentsattendance"
+								"student",
+								"attendance"
 							]
 						}
 					},
@@ -594,13 +648,21 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8080/studentsattendance",
+							"raw": "192.168.0.123:8080/student/attendance/:id",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
-								"studentsattendance"
+								"student",
+								"attendance",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						}
 					},
@@ -618,13 +680,21 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8080/studentsattendance",
+							"raw": "192.168.0.123:8080/student/attendance/:id",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
-								"studentsattendance"
+								"student",
+								"attendance",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						}
 					},
@@ -642,13 +712,41 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8080/studentsattendance",
+							"raw": "192.168.0.123:8080/student/attendance/:id",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
-								"studentsattendance"
+								"student",
+								"attendance",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "192.168.0.123:8080/student/attendance/all",
+							"host": [
+								"192.168.0.123"
+							],
+							"port": "8080",
+							"path": [
+								"student",
+								"attendance",
+								"all"
 							]
 						}
 					},
@@ -671,13 +769,21 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8080/teachersattendance",
+							"raw": "192.168.0.123:8080/teacher/attendance/:id",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
-								"teachersattendance"
+								"teacher",
+								"attendance",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						}
 					},
@@ -695,9 +801,9 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8080/teachersattendance",
+							"raw": "192.168.0.123:8080/teachersattendance",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
@@ -728,9 +834,9 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/teacher",
+							"raw": "192.168.0.123:8080/teacher",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
@@ -752,13 +858,21 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8080/teacher",
+							"raw": "192.168.0.123:8080/teacher/attendance/:id",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
-								"teacher"
+								"teacher",
+								"attendance",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						}
 					},
@@ -776,13 +890,21 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8080/teachersattendance",
+							"raw": "192.168.0.123:8080/teacher/attendance/:id",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
-								"teachersattendance"
+								"teacher",
+								"attendance",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						}
 					},
@@ -800,19 +922,19 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "v8i1m7ecoto8782v8i1m7ecoto8782",
+								"value": "cdqalzbqqka8782cdqalzbqqka8782",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "localhost:8080/csv/all",
+							"raw": "192.168.0.123:8080/download/allUsers.csv",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
-								"csv",
-								"all"
+								"download",
+								"allUsers.csv"
 							]
 						}
 					},
@@ -825,14 +947,14 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "v8i1m7ecoto8782v8i1m7ecoto8782",
+								"value": "2mjwa2kozs987822mjwa2kozs98782",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "localhost:8080/csv/teachers",
+							"raw": "192.168.0.123:8080/csv/teachers",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
@@ -855,9 +977,9 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8080/csv//teachers/bio/?id=63889da3fb6a02327e9671f2",
+							"raw": "192.168.0.123:8080/csv//teachers/bio/?id=63889da3fb6a02327e9671f2",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [
@@ -889,9 +1011,9 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8080/csv//teachers/bio/?id=63889da3fb6a02327e9671f2",
+							"raw": "192.168.0.123:8080/csv//teachers/bio/?id=63889da3fb6a02327e9671f2",
 							"host": [
-								"localhost"
+								"192.168.0.123"
 							],
 							"port": "8080",
 							"path": [

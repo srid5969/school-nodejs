@@ -11,46 +11,24 @@ exports.findStudentByfirstName = () => {
   });
   return data.find();
 };
-exports.register =async (datas) => {
- datas.classid=await classes.findOne({name:datas.classid})
+exports.register = async (datas) => {
+  datas.classid = await classes.findOne({ _id: datas.classid });
   const data = new students(datas);
   return await data.save();
 };
-exports.updateStudentDetailsById = async (id, datas) => {
-  const {
-    firstName,
-    lastName,
-    dob,
-    fathername,
-    mothername,
-    address2,
-    address1,
-    city,
-    pincode,
-    classid,
-  } = datas;
-  const data =await students.updateOne(
-    { _id: id },
-    {
-      firstName,
-      lastName,
-      dob,
-      fathername,
-      mothername,
-      address2,
-      address1,
-      city,
-      pincode,
-      classid,
-    }
-  );
+exports.updateStudentDetailsById = async (_id, datas) => {
+  const data = await students.updateOne(_id, datas);
   return data;
 };
 exports.deleteStudentById = async (id) => {
   const data = students.deleteOne({ _id: id });
   return data;
 };
-exports.findStudentById = async (id) => {
-  const data = students.findOne({ _id: id });
+exports.findStudentById = async (_id) => {
+  const data = await students.findById(_id);
+  return await data;
+};
+exports.getStudentsListByClassId = async (classid) => {
+  const data = await students.find({ classid });
   return data;
 };

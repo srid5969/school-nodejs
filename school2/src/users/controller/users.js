@@ -22,9 +22,6 @@ router.post("/login", async (req, res) => {
 router.post("/logout", (req, res) => {
   res.json({ message: "Thank you" });
 });
-// router.post("/", async (req, res) => {
-//   const user = req.body.id;
-// });
 router.delete("/:id", async (req, res) => {
   service
     .deleteByEmail(req.params.id)
@@ -33,10 +30,21 @@ router.delete("/:id", async (req, res) => {
 });
 router.patch("/:id", async (req, res) => {
   service
-    .update(req.body, req.params.id)
+    .updateById(req.params.id,req.body)
+    .then((data) => res.json({message:"Successfully Updated"}))
+    .catch((err) => res.json(err));
+});
+router.get("/:id", async (req, res) => {
+  service
+    .getById(req.params.id)
     .then((data) => res.json(data))
     .catch((err) => res.json(err));
 });
-router.post("/", async (req, res) => {
-  res.json("Thank You");
+router.get("/all/:role", async (req, res) => {
+  service.getByRole(req.params.role).then((data) => res.json(data));
 });
+
+
+router.get('/demo',async(req,res)=>{
+  res.json(req.query.id)
+})

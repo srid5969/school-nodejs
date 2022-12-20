@@ -24,9 +24,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/download", email);
 app.use("/class", classes);
 app.use("/user", users);
-app.use("/student", studentsAttendance);
-app.use("/teacher", teachersAttendance);
-app.use("/students", students);
+app.use("/student/attendance", studentsAttendance);
+app.use("/teacher/attendance", teachersAttendance);
+app.use("/student", students);
 app.use("/csv", csvController);
 
 app.listen(8080, () => {console.log(`Server Started at 8080`);});

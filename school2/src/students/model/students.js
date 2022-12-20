@@ -13,6 +13,7 @@ const StudentsSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: "classes",
     required: true,
+    index: true 
   },
   dob: {
     type: Date,
@@ -48,4 +49,6 @@ const StudentsSchema = new mongoose.Schema({
     default: moment().format("YYYY-MM-DD hh:mm"),
   },
 });
+StudentsSchema.index({ classid: 1 });
+
 module.exports = mongoose.model("students", StudentsSchema);

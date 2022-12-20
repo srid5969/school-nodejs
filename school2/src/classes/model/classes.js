@@ -11,6 +11,6 @@ const classesSchema = new mongoose.Schema({
   createDate: {
     type: String,
     default: moment().format("YYYY-MM-DD hh:mm "),
-  },
+  }
 });
 module.exports = mongoose.model("classes", classesSchema);

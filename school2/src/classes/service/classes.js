@@ -10,8 +10,7 @@ const users = require("../../users/model/users");
 //  return data.save();
 // };
 exports.assignTeacher = async (Data) => {
-  const teacherData = await users.findOne(Data.teacher);
-  console.log(teacherData)
+  const teacherData = await users.findOne({ _id: Data.classTeacherId });
   const data = await classes.create({
     classTeacher: teacherData,
     name: Data.name,
@@ -19,7 +18,6 @@ exports.assignTeacher = async (Data) => {
   return await data;
 };
 exports.registerClass = async (name, classTeacher) => {
-
   const data = await new classes({
     name,
     classTeacher,
@@ -28,25 +26,30 @@ exports.registerClass = async (name, classTeacher) => {
   return data.save();
 };
 exports.getAll = async () => {
-  const data = classes.find().populate({ path: "classTeacher" });
-  return data;
+  const Data = await (
+    await classes.find().populate({ path: "classTeacher" })
+  ).map(
+    (data) =>
+      (data = {
+        _id: data._id,
+        classTeacher:
+          data.classTeacher.firstName + " " + data.classTeacher.lastName,
+        name: data.name,
+      })
+  );
+  return Data;
 };
-exports.getByClassName = async (payload) => {
+exports.getByClassId = async (_id) => {
   const data = classes
-    .findOne({ name: payload })
+    .findOne(_id)
     .populate({ path: "classTeacher", model: users });
   return data;
 };
-exports.deleteByClassName = async (payload) => {
-  const data =await classes.deleteOne({ name: payload });
+exports.deleteByClassId = async (_id) => {
+  const data = await classes.findByIdAndDelete(_id);
   return data;
 };
-exports.updateClassTeacherByClassName = async (payload, user) => {
-  const data = await classes.updateOne(
-    { name: payload },
-    { classTeacher: user }
-  );
-  return await classes
-    .findOne({ name: payload })
-    .populate({ path: "classTeacher" });
+exports.updateClassTeacherByClassId = async (_id, user) => {
+  const data = await classes.updateOne(_id, { classTeacher: user });
+  return await classes.findOne(_id).populate({ path: "classTeacher" });
 };

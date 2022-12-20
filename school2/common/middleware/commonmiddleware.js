@@ -21,19 +21,19 @@ module.exports = async (req, res, next) => {
         if (data && data1) {
           const Data = await bcrypt.compare(password, data);
           if (Data) {
-            const id = data1._id;
-            await userToken.deleteMany({ users: id });
+            // const id = data1._id;
+            // await userToken.deleteMany({ users: id });
             const N = 30;
             const generated_token = await Array(N + 1)
               .join((Math.random().toString(36) + "8782").slice(2, 18))
               .slice(0, N);
-              try {
-                const salt = await bcrypt.genSalt(10);
-                const hashedPassword = await bcrypt.hash(generated_token, salt);
-                generatedToken =await hashedPassword
-              } catch (error) {
-                next(error);
-              }
+            try {
+              const salt = await bcrypt.genSalt(10);
+              const hashedPassword = await bcrypt.hash(generated_token, salt);
+              generatedToken = await hashedPassword;
+            } catch (error) {
+              next(error);
+            }
             const token = await userToken({
               users: data1,
               token: generatedToken,
@@ -61,7 +61,7 @@ module.exports = async (req, res, next) => {
         res.status(400).send({ mes: "user cannot be found" });
       }
     } else {
-      res.json("Please add username and password");
+      res.json({ message: "Please add username and password" });
     }
     //
   } else if (originalUrl == "/user/logout") {
@@ -73,6 +73,8 @@ module.exports = async (req, res, next) => {
           { token: Token },
           { status: "Inactive" }
         );
+        // const id = data1._id;
+        await userToken.deleteMany({ users: TokenIsValid._id });
         event.emit("inactive", TokenIsValid.users);
         next();
       } else {
@@ -124,7 +126,7 @@ module.exports = async (req, res, next) => {
               console.log("\t Token : ", Token, "\n");
             } else {
               console.log("\t Access Denied");
-              res.status(404).json("user is unauthorized");
+              res.status(404).json({ message: "user is unauthorized" });
             }
           } else if (
             userDetail.role === "Principle" ||
@@ -144,11 +146,12 @@ module.exports = async (req, res, next) => {
             next();
           }
         } else {
-          res.json("Please Enter The token");
+          res.json({ message: "Please Enter The token" });
         }
       }
     } else {
-      if (originalUrl !== "/user/login") res.json("Token is invalid");
+      if (originalUrl !== "/user/login")
+        res.json({ message: "Token is invalid" });
       else res.status(400).json({ message: "User is not verified" });
     }
   }
