@@ -26,19 +26,19 @@ router.delete("/:id", async (req, res) => {
   service
     .deleteByEmail(req.params.id)
     .then((data) => res.json(data))
-    .catch((err) => res.json(err));
+    .catch((err) => res.status(400).json(err));
 });
 router.patch("/:id", async (req, res) => {
   service
     .updateById(req.params.id,req.body)
     .then((data) => res.json({message:"Successfully Updated"}))
-    .catch((err) => res.json(err));
+    .catch((err) => res.status(400).json(err));
 });
 router.get("/:id", async (req, res) => {
   service
     .getById(req.params.id)
     .then((data) => res.json(data))
-    .catch((err) => res.json(err));
+    .catch((err) => res.status(400).json(err));
 });
 router.get("/all/:role", async (req, res) => {
   service.getByRole(req.params.role).then((data) => res.json(data));

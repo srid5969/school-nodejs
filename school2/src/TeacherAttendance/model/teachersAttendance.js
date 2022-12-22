@@ -3,6 +3,7 @@ const moment = require("moment-timezone");
 const teachersAttendanceSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Types.ObjectId,
+    required: true,
     ref: "users"
   },
   status: {
@@ -12,7 +13,7 @@ const teachersAttendanceSchema = new mongoose.Schema({
   },
   date: {
     type: String,
-    default: moment().format("YYYY-MM-DD hh:mm")
+    default: moment().format("YYYY-MM-DD")
   },
   createDate: {
     type: String,

@@ -29,6 +29,11 @@ exports.findStudentById = async (_id) => {
   return await data;
 };
 exports.getStudentsListByClassId = async (classid) => {
-  const data = await students.find({ classid });
-  return data;
+  const data = await students
+    .find(
+      { classid: classid },
+      {  createDate: 0, mothername: 0, pincode: 0, address2: 0 }
+    )
+    .sort({ firstName: 1 });
+  return await data;
 };

@@ -11,11 +11,11 @@ const users = require("../../users/model/users");
 // };
 exports.assignTeacher = async (Data) => {
   const teacherData = await users.findOne({ _id: Data.classTeacherId });
-  const data = await classes.create({
-    classTeacher: teacherData,
-    name: Data.name,
-  });
-  return await data;
+  const data = await new classes({
+    classTeacher:Data.classTeacherId,
+    name:Data.name
+  })
+  return await (await data.save()).populate('classTeacher');
 };
 exports.registerClass = async (name, classTeacher) => {
   const data = await new classes({
@@ -25,19 +25,36 @@ exports.registerClass = async (name, classTeacher) => {
 
   return data.save();
 };
-exports.getAll = async () => {
-  const Data = await (
-    await classes.find().populate({ path: "classTeacher" })
-  ).map(
-    (data) =>
-      (data = {
-        _id: data._id,
-        classTeacher:
-          data.classTeacher.firstName + " " + data.classTeacher.lastName,
-        name: data.name,
-      })
-  );
-  return Data;
+exports.getAll = async (condition, classTeacher) => {
+  if (condition == "Teacher") {
+    const Data = await (
+      await classes.find({ classTeacher }).populate({ path: "classTeacher" })
+    ).map(
+      (data) =>
+        (data = {
+          _id: data._id,
+          classTeacher:
+            data.classTeacher.firstName + " " + data.classTeacher.lastName,
+          name: data.name,
+          classId: data.classTeacher._id,
+        })
+    );
+    return Data;
+  } else {
+    const Data = await (
+      await classes.find().populate({ path: "classTeacher" })
+    ).map(
+      (data) =>
+        (data = {
+          _id: data._id,
+          classTeacher:
+            data.classTeacher.firstName + " " + data.classTeacher.lastName,
+          name: data.name,
+          classId: data.classTeacher._id,
+        })
+    );
+    return Data;
+  }
 };
 exports.getByClassId = async (_id) => {
   const data = classes

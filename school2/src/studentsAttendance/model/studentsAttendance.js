@@ -14,9 +14,11 @@ const studentAttendanceSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  dates: {
+  date: {
     type: Date,
     required: true,
+    default: moment().format("YYYY-MM-DD"),
+
   },
   createDate: {
     type: String,

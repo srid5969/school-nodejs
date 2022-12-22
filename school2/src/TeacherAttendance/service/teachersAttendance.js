@@ -6,13 +6,13 @@ exports.getAll = () => {
   return teachers.find();
 };
 
-exports.register = ({ userId, status, date}) => {
+exports.register = ({ userId, status, date }) => {
   const data = new teachers({
     userId,
     status,
     date,
   });
-  return data.save()
+  return data.save();
 };
 exports.deleteTeachersById = async (payload) => {
   const data = await teachers.findByIdAndDelete(payload);
@@ -26,4 +26,9 @@ exports.updateTeachersById = async (id, payload) => {
     { _id: payload },
     { userId: UserId, status: Status, date: Dates, createDate: CreateDate }
   );
+};
+exports.updateOrInsertBulkTeacherAttendance = async (date, bulkAttendance) => {
+  await teachers.deleteMany({date});
+  const data=await teachers.insertMany(bulkAttendance);
+  return data
 };

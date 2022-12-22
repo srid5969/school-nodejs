@@ -28,6 +28,11 @@
 								"value": "sridhar",
 								"type": "text",
 								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "$2b$10$wBRStuAg3Ch6VYWkIKCtXOSng1Vs1Z4TBsK6bv0RRB48150caz71O",
+								"type": "text"
 							}
 						],
 						"body": {
@@ -77,9 +82,9 @@
 							}
 						},
 						"url": {
-							"raw": "192.168.0.123:8080/user/signup",
+							"raw": "localhost:8080/user/signup",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -111,9 +116,9 @@
 							}
 						},
 						"url": {
-							"raw": "192.168.0.123:8080/user/63a14c9e18454145e61dccd7",
+							"raw": "localhost:8080/user/63a14c9e18454145e61dccd7",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -136,9 +141,9 @@
 							}
 						],
 						"url": {
-							"raw": "192.168.0.123:8080/user/all",
+							"raw": "localhost:8080/user/all",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -161,9 +166,9 @@
 							}
 						],
 						"url": {
-							"raw": "192.168.0.123:8080/user/all",
+							"raw": "localhost:8080/user/all",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -186,9 +191,9 @@
 							}
 						],
 						"url": {
-							"raw": "192.168.0.123:8080/user",
+							"raw": "localhost:8080/user",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -210,9 +215,9 @@
 							}
 						],
 						"url": {
-							"raw": "192.168.0.123:8080/user/logout",
+							"raw": "localhost:8080/user/logout",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -258,7 +263,31 @@
 					"name": "New Request",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "$2b$10$wBRStuAg3Ch6VYWkIKCtXOSng1Vs1Z4TBsK6bv0RRB48150caz71O",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/user/demo/?id=erytedfgdfgb",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"demo",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "erytedfgdfgb"
+								}
+							]
+						}
 					},
 					"response": []
 				}
@@ -268,26 +297,26 @@
 			"name": "classes",
 			"item": [
 				{
-					"name": "GetClassDeatailsByClassName",
+					"name": "GetClassDeatailsByClassId",
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "zeww0shkxq8782zeww0shkxq8782ze",
+								"value": "$2b$10$sL4un1X0H2sEpxlfMW.i2Oz9fEjrOA.3wTpaff5OpRzgvP3/M4Htm",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://192.168.0.123:8080/class/XIIE1324",
-							"protocol": "http",
+							"raw": "localhost:8080/class/students/63a03dbf914ff8a16e4a0bf8",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"class",
-								"XIIE1324"
+								"students",
+								"63a03dbf914ff8a16e4a0bf8"
 							]
 						}
 					},
@@ -314,9 +343,9 @@
 							}
 						},
 						"url": {
-							"raw": "192.168.0.123:8080/class",
+							"raw": "localhost:8080/class",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -347,10 +376,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://192.168.0.123:8080/class/X A",
+							"raw": "http://localhost:8080/class/X A",
 							"protocol": "http",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -368,20 +397,51 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "zeww0shkxq8782zeww0shkxq8782ze",
+								"value": "$2b$10$wBRStuAg3Ch6VYWkIKCtXOSng1Vs1Z4TBsK6bv0RRB48150caz71O",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://192.168.0.123:8080/class/all",
-							"protocol": "http",
+							"raw": "192.168.0.123:8080/class/all",
 							"host": [
-								"192.168.0.123"
+								"192",
+								"168",
+								"0",
+								"123"
 							],
 							"port": "8080",
 							"path": [
 								"class",
 								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllClass Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "$2b$10$wBRStuAg3Ch6VYWkIKCtXOSng1Vs1Z4TBsK6bv0RRB48150caz71O",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "192.168.0.123:8080/class/students/63a03dbf914ff8a16e4a0bf8",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"123"
+							],
+							"port": "8080",
+							"path": [
+								"class",
+								"students",
+								"63a03dbf914ff8a16e4a0bf8"
 							]
 						}
 					},
@@ -399,9 +459,9 @@
 							}
 						],
 						"url": {
-							"raw": "192.168.0.123:8080/class/63a181e2ca3a80662a27c77f",
+							"raw": "localhost:8080/class/63a181e2ca3a80662a27c77f",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -419,13 +479,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "vja0o648vc8782vja0o648vc8782vj",
+								"value": "$2b$10$wBRStuAg3Ch6VYWkIKCtXOSng1Vs1Z4TBsK6bv0RRB48150caz71O",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"VIII C\",\n    \"firstName\":\"sundara\"\n}",
+							"raw": "{\n    \"name\":\"VIII l3\",\n    \"classTeacherId\":\"63a16d281309108a2eaa6d16\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -433,9 +493,43 @@
 							}
 						},
 						"url": {
-							"raw": "192.168.0.123:8080/class/assign",
+							"raw": "localhost:8080/class/assign",
 							"host": [
-								"192.168.0.123"
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"class",
+								"assign"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Teacher Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "$2b$10$wBRStuAg3Ch6VYWkIKCtXOSng1Vs1Z4TBsK6bv0RRB48150caz71O",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"VIII l3\",\n    \"classTeacherId\":\"63a16d281309108a2eaa6d16\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/class/assign",
+							"host": [
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -463,10 +557,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://192.168.0.123:8080/student/63a049edf1f32ea1913ed3de",
+							"raw": "http://localhost:8080/student/63a049edf1f32ea1913ed3de",
 							"protocol": "http",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -498,10 +592,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://192.168.0.123:8080/students/",
+							"raw": "http://localhost:8080/students/",
 							"protocol": "http",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -533,10 +627,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://192.168.0.123:8080/students/63a049edf1f32ea1913ed3de",
+							"raw": "http://localhost:8080/students/63a049edf1f32ea1913ed3de",
 							"protocol": "http",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -559,9 +653,9 @@
 							}
 						],
 						"url": {
-							"raw": "192.168.0.123:8080/student",
+							"raw": "localhost:8080/student",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -583,15 +677,44 @@
 							}
 						],
 						"url": {
-							"raw": "http://192.168.0.123:8080/students/all",
+							"raw": "http://localhost:8080/students/all",
 							"protocol": "http",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"students",
 								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "classStudentsList",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "$2b$10$dVxXg6..TQc0V/4S/OmRvu9aGqI5uxQehhH5IfUAfqEKq1W12V24m",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "192.168.0.123:8080/student/class/63a03dbf914ff8a16e4a0bf8",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"123"
+							],
+							"port": "8080",
+							"path": [
+								"student",
+								"class",
+								"63a03dbf914ff8a16e4a0bf8"
 							]
 						}
 					},
@@ -609,13 +732,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "dpn3x264ssr8782dpn3x264ssr8782",
+								"value": "$2b$10$wBRStuAg3Ch6VYWkIKCtXOSng1Vs1Z4TBsK6bv0RRB48150caz71O",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"status\":\"active\",\n    \"date\":\"2020-05-22\"\n}",
+							"raw": "{\n        \"studentId\": \"63a049e2f1f32ea1913ed3d9\",\n        \"status\": \"24351245r \"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -623,9 +746,9 @@
 							}
 						},
 						"url": {
-							"raw": "192.168.0.123:8080/student/attendance",
+							"raw": "localhost:8080/student/attendance",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -648,9 +771,9 @@
 							}
 						],
 						"url": {
-							"raw": "192.168.0.123:8080/student/attendance/:id",
+							"raw": "localhost:8080/student/attendance/:id",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -680,9 +803,9 @@
 							}
 						],
 						"url": {
-							"raw": "192.168.0.123:8080/student/attendance/:id",
+							"raw": "localhost:8080/student/attendance/:id",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -712,9 +835,9 @@
 							}
 						],
 						"url": {
-							"raw": "192.168.0.123:8080/student/attendance/:id",
+							"raw": "localhost:8080/student/attendance/:id",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -736,21 +859,154 @@
 					"name": "GetAll",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "$2b$10$sL4un1X0H2sEpxlfMW.i2Oz9fEjrOA.3wTpaff5OpRzgvP3/M4Htm",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "192.168.0.123:8080/student/attendance/all",
+							"raw": "localhost:8080/student/attendance/",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"student",
 								"attendance",
-								"all"
+								""
 							]
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "$2b$10$wBRStuAg3Ch6VYWkIKCtXOSng1Vs1Z4TBsK6bv0RRB48150caz71O",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"studentId\": \"63a049edf1f32ea1913ed3de\",\n        \"status\": \"Present\",\n        \"classid\":\"63a03dbf914ff8a16e4a0bf8\"\n    },\n    {\n        \"studentId\": \"63a049e2f1f32ea1913ed3d9\",\n        \"status\": \"Arbsent\",\n        \"classid\":\"63a03dbf914ff8a16e4a0bf8\"\n    },\n    {\n        \"studentId\": \"63a04a40f1f32ea1913ed3e7\",\n        \"status\": \"Active\",\n        \"classid\":\"63a03dbf914ff8a16e4a0bf8\"\n    },{\n        \"dates\": \"2022-12-21T07:21:00.000Z\",\n        \"_id\": \"63a1addb1ec5495cec060157\",\n        \"classId\": \"63a03dbf914ff8a16e4a0bf8\",\n        \"studentId\": \"63a049e2f1f32ea1913ed3d9\",\n        \"status\": \"tomer\",\n        \"date\": \"2020-05-22T00:00:00.000Z\",\n        \"createDate\": \"2022-12-20 06:12\",\n        \"__v\": 0\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "192.168.0.123:8080/student/attendance/submit?classid=63a03dbf914ff8a16e4a0bf8",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"123"
+							],
+							"port": "8080",
+							"path": [
+								"student",
+								"attendance",
+								"submit"
+							],
+							"query": [
+								{
+									"key": "classid",
+									"value": "63a03dbf914ff8a16e4a0bf8"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "$2b$10$wBRStuAg3Ch6VYWkIKCtXOSng1Vs1Z4TBsK6bv0RRB48150caz71O",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n    {\n        \"studentId\": \"63a049edf1f32ea1913ed3de\",\n        \"status\": \"Present\",\n        \"classid\":\"63a03dbf914ff8a16e4a0bf8\"\n    },\n    {\n        \"studentId\": \"63a049e2f1f32ea1913ed3d9\",\n        \"status\": \"Absent\",\n        \"classid\":\"63a03dbf914ff8a16e4a0bf8\"\n    },\n    {\n        \"studentId\": \"63a04a40f1f32ea1913ed3e7\",\n        \"status\": \"Active\",\n        \"classid\":\"63a03dbf914ff8a16e4a0bf8\"\n    },{\n        \"dates\": \"2022-12-21T07:21:00.000Z\",\n        \"_id\": \"63a1addb1ec5495cec060157\",\n        \"classId\": \"63a03dbf914ff8a16e4a0bf8\",\n        \"studentId\": \"63a049e2f1f32ea1913ed3d9\",\n        \"status\": \"tomer\",\n        \"date\": \"2020-05-22T00:00:00.000Z\",\n        \"createDate\": \"2022-12-20 06:12\",\n        \"__v\": 0\n    }\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "192.168.0.123:8080/student/attendance/submit?classid=63a03dbf914ff8a16e4a0bf8",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"123"
+									],
+									"port": "8080",
+									"path": [
+										"student",
+										"attendance",
+										"submit"
+									],
+									"query": [
+										{
+											"key": "classid",
+											"value": "63a03dbf914ff8a16e4a0bf8"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "92"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5c-alOV7tMJURS7NtDv7hQBK6fZsTo\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Dec 2022 10:53:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"acknowledged\": true,\n    \"modifiedCount\": 0,\n    \"upsertedId\": null,\n    \"upsertedCount\": 0,\n    \"matchedCount\": 2\n}"
+						}
+					]
 				}
 			]
 		},
@@ -769,9 +1025,9 @@
 							}
 						],
 						"url": {
-							"raw": "192.168.0.123:8080/teacher/attendance/:id",
+							"raw": "localhost:8080/teacher/attendance/:id",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -801,9 +1057,9 @@
 							}
 						],
 						"url": {
-							"raw": "192.168.0.123:8080/teachersattendance",
+							"raw": "localhost:8080/teachersattendance",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -834,13 +1090,54 @@
 							}
 						},
 						"url": {
-							"raw": "192.168.0.123:8080/teacher",
+							"raw": "localhost:8080/teacher",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"teacher"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RegisterTeachersAttendace Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "$2b$10$dVxXg6..TQc0V/4S/OmRvu9aGqI5uxQehhH5IfUAfqEKq1W12V24m",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Activfde\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Activfde\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Activfde\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    },\n    {\n        \"userId\": \"6396d8a6f4a300068d2a30be\",\n        \"status\": \"Active\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/teacher/attendance/submit?date=1999-02-21",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teacher",
+								"attendance",
+								"submit"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "1999-02-21"
+								}
 							]
 						}
 					},
@@ -858,9 +1155,9 @@
 							}
 						],
 						"url": {
-							"raw": "192.168.0.123:8080/teacher/attendance/:id",
+							"raw": "localhost:8080/teacher/attendance/:id",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -890,9 +1187,9 @@
 							}
 						],
 						"url": {
-							"raw": "192.168.0.123:8080/teacher/attendance/:id",
+							"raw": "localhost:8080/teacher/attendance/:id",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -927,9 +1224,9 @@
 							}
 						],
 						"url": {
-							"raw": "192.168.0.123:8080/download/allUsers.csv",
+							"raw": "localhost:8080/download/allUsers.csv",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -952,9 +1249,9 @@
 							}
 						],
 						"url": {
-							"raw": "192.168.0.123:8080/csv/teachers",
+							"raw": "localhost:8080/csv/teachers",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -977,9 +1274,9 @@
 							}
 						],
 						"url": {
-							"raw": "192.168.0.123:8080/csv//teachers/bio/?id=63889da3fb6a02327e9671f2",
+							"raw": "localhost:8080/csv//teachers/bio/?id=63889da3fb6a02327e9671f2",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -1011,9 +1308,9 @@
 							}
 						],
 						"url": {
-							"raw": "192.168.0.123:8080/csv//teachers/bio/?id=63889da3fb6a02327e9671f2",
+							"raw": "localhost:8080/csv//teachers/bio/?id=63889da3fb6a02327e9671f2",
 							"host": [
-								"192.168.0.123"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [

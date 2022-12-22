@@ -3,7 +3,7 @@ const users = require("../model/users");
 
 exports.getAll = () => {
   // return users.find({},{ projection: { _id: 0 } })
-  return users.find();
+  return users.find().sort({ createDate: 1 })
   //.select(" email firstName lastName phone phoneCode gender status");
 };
 exports.getById = async (_id) => {

@@ -7,14 +7,14 @@ module.exports = async (req, res, next) => {
   console.log(
     `\n\n \t http://192.168.0.123:8080${originalUrl} \t ${req.method}`
   );
-  let username = req.body.firstName;
+  let username = req.body.email;
   let password = req.body.password;
   let Token = req.headers.authorization;
   if (originalUrl.includes("/download/")) {
     next();
   } else if (originalUrl === "/user/login") {
     if (username && password) {
-      const data1 = await users.findOne({ firstName: username });
+      const data1 = await users.findOne({ email: username });
       if (data1) {
         const data = await data1.password;
         event.emit("active", data1._id);
@@ -107,7 +107,6 @@ module.exports = async (req, res, next) => {
       .findOne({ token: Token })
       .populate({ path: "users" });
     if (TokenData) {
-      // console.log(TokenData);
       userDetail = TokenData.users;
       userId = userDetail._id;
       if (Token) {
@@ -117,8 +116,8 @@ module.exports = async (req, res, next) => {
               !(
                 originalUrl == "/teacher/all" ||
                 originalUrl === "/user/signup" ||
-                originalUrl === "user/all" ||
-                originalUrl === "user/login"
+                originalUrl === "/user/all" ||
+                originalUrl === "/user/login"
               )
             ) {
               next();
@@ -129,7 +128,7 @@ module.exports = async (req, res, next) => {
               res.status(404).json({ message: "user is unauthorized" });
             }
           } else if (
-            userDetail.role === "Principle" ||
+            userDetail.role === "Principal" ||
             userDetail.role === "principal"
           ) {
             if (!(originalUrl == "/user/login")) {

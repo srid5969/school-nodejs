@@ -3,6 +3,9 @@ const bcrypt = require("bcrypt");
 const moment = require("moment-timezone");
 
 const usersSchema = new mongoose.Schema({
+  id: {
+    type: Number,
+  },
   firstName: {
     type: String,
     required: true,
@@ -18,7 +21,7 @@ const usersSchema = new mongoose.Schema({
   },
   phoneCode: {
     type: Number,
-    required: true,
+    default: 91,
   },
   email: {
     type: String,
@@ -81,4 +84,16 @@ usersSchema.pre("save", async function (next) {
     next(error);
   }
 });
-module.exports = mongoose.model("users", usersSchema);
+var user = (module.exports = mongoose.model("users", usersSchema));
+// usersSchema.pre("save", function (next) {
+//   var doc = this;
+//   user.findByIdAndUpdate(
+//     { _id: "entityId" },
+//     { $inc: { seq: 1 } },
+//     function (error, user) {
+//       if (error) return next(error);
+//       this.id = user.seq;
+//       next();
+//     }
+//   );
+// });
