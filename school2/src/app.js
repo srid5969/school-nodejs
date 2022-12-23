@@ -1,3 +1,4 @@
+'use strict'
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -10,12 +11,14 @@ const students = require("./students/controller/students");
 const commonMiddleware = require("../common/middleware/commonmiddleware");
 const csvController = require("./report/controller/csv_controller");
 const email = require("./report/emailcontroller/email");
+
+
 const app = express();
 app.use(express.json());
 app.use(cors({ origin: "*" }));
+
 mongoose.connect(manager);
 const database = mongoose.connection;
-
 database.on("error", (error) => console.error());
 database.once("connected", () => {  console.log("Database Connected");});
 

@@ -68,6 +68,24 @@ router.get("/teacher/attendance/:id", async (req, res) => {
     .generate_a_Report_For_Particular_Teacher(req.params.id, userDetail.email)
     .then(() => res.json({ message: "Success" }));
 });
-// router.get("/allUsers", async (_req, res) => {
-//   res.sendFile("allUsers.csv", { root: "school2/csv/" });
-// });
+//particular class
+router.get("/student/attendance", async (req, res) => {
+  service
+    .getInfoByGettingFromToDateForStudentsByClassId(
+      req.query.from,
+      req.query.to,
+      req.query.classId
+    )
+    .then((data) => res.json(data))
+    .catch((err) => res.status(400).json(err));
+});
+//for all teachers
+router.get("/teacher/attendance", async (req, res) => {
+  service
+    .getInfoByGettingFromToDateForTeachers(
+      req.query.from,
+      req.query.to
+    )
+    .then((data) => res.json(data))
+    .catch((err) => res.status(400).json(err));
+});

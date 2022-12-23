@@ -18,33 +18,16 @@ exports.registerClass = async (name, classTeacher) => {
   return data.save();
 };
 exports.getAll = async (condition, classTeacher) => {
+  console.log(" await classes.find()");
+
   if (condition == "Teacher") {
-    const Data = await (
-      await classes.find({ classTeacher }).populate({ path: "classTeacher" })
-    ).map(
-      (data) =>
-        (data = {
-          _id: data._id,
-          classTeacher:
-            data.classTeacher.firstName + " " + data.classTeacher.lastName,
-          name: data.name,
-          classId: data.classTeacher._id,
-        })
-    );
+    const Data = await classes
+      .find({ classTeacher })
+      .populate({ path: "classTeacher" });
     return Data;
   } else {
-    const Data = await (
-      await classes.find().populate({ path: "classTeacher" })
-    ).map(
-      (data) =>
-        (data = {
-          _id: data._id,
-          classTeacher:
-            data.classTeacher.firstName + " " + data.classTeacher.lastName,
-          name: data.name,
-          classId: data.classTeacher._id,
-        })
-    );
+    const Data = await classes.find({}).lean().populate({ path: "classTeacher",select: ' firstName' }) .select('name  classTeacher');
+    
     return Data;
   }
 };

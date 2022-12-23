@@ -14,7 +14,7 @@ module.exports = async (req, res, next) => {
     next();
   } else if (originalUrl === "/user/login") {
     if (username && password) {
-      const data1 = await users.findOne({ email: username });
+      const data1 = await users.findOne({ email: username },{firstName:1,email:1,role:1,password:1});
       if (data1) {
         const data = await data1.password;
         event.emit("active", data1._id);
@@ -22,7 +22,6 @@ module.exports = async (req, res, next) => {
           const Data = await bcrypt.compare(password, data);
           if (Data) {
             // const id = data1._id;
-            // await userToken.deleteMany({ users: id });
             const N = 30;
             const generated_token = await Array(N + 1)
               .join((Math.random().toString(36) + "8782").slice(2, 18))
@@ -34,6 +33,7 @@ module.exports = async (req, res, next) => {
             } catch (error) {
               next(error);
             }
+
             const token = await userToken({
               users: data1,
               token: generatedToken,
@@ -46,6 +46,7 @@ module.exports = async (req, res, next) => {
               "\t: Has Logged in"
             );
             console.log("\t Login Time\t:", usersTokenWithPassword.createDate);
+            console.log(usersTokenWithPassword);
             let result = usersTokenWithPassword;
             result = result.toObject();
             delete result.users.password;
@@ -105,7 +106,8 @@ module.exports = async (req, res, next) => {
   } else {
     let TokenData = await userToken
       .findOne({ token: Token })
-      .populate({ path: "users" })
+      .populate({ path: "users", select: "firstName email role phone" });
+    console.log(TokenData);
     if (TokenData) {
       userDetail = TokenData.users;
       userId = userDetail._id;

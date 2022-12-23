@@ -7,11 +7,10 @@ const moment = momentTime.format("YYYY-MM-DD hh:mm");
 const users = require("../../users/model/users");
 const teachersAttendance = require("../../TeacherAttendance/model/teachersAttendance");
 const studentsAttendance = require("../../studentsAttendance/model/studentsAttendance");
-const yesterday = momentTime.subtract(1, "days").format("YYYY-MM-DD hh:mm");
+const yesterday = momentTime.subtract(1, "days").format("YYYY-MM-DD");
 const commonLink = "http://192.168.0.123:8080/download/";
 exports.generateCsvReportForAllUser = async (email) => {
   const fileName = "allUsers.csv";
-
   const csvWriter = createCsvWriter({
     path: commonLocation + fileName,
     header: [
@@ -66,11 +65,11 @@ exports.generateListOfTeachers = async (res, email) => {
     )
     .then(() => {
       console.log("...Done");
-      trigger.emit("emailAllUser", email, (commonLink + fileName));
+      trigger.emit("emailAllUser", email, commonLink + fileName);
       res.json({ message: "Generated Report" });
     });
 }; //2
-exports.generate_a_Report_For_Particular_Teacher = async (data,email) => {
+exports.generate_a_Report_For_Particular_Teacher = async (data, email) => {
   const record = await users.find({
     role: "Teacher",
     _id: data,
@@ -104,12 +103,11 @@ exports.generate_a_Report_For_Particular_Teacher = async (data,email) => {
   });
 }; //3
 exports.generate_a_Report_For_Particular_Teacher_attendance_for_yesterday =
-  async (teacher,email) => {
-    let record = [];
-    record[0] = await (
+  async (teacher, email) => {
+    const record = await (
       await teachersAttendance.find({ userId: teacher })
     ).filter((data) => {
-      if (data.createDate.substring(0, 10) == yesterday.substring(0, 10)) {
+      if (data.createDate.substring(0, 10) == yesterday) {
         return data;
       }
     });
@@ -131,7 +129,7 @@ exports.generate_a_Report_For_Particular_Teacher_attendance_for_yesterday =
       return { message: "Generated Report" };
     });
   }; //4
-exports.get_monthly_report_for_a_teacher = async (teacher, month,email) => {
+exports.get_monthly_report_for_a_teacher = async (teacher, month, email) => {
   const record = await (
     await teachersAttendance.find({ userId: teacher })
   ).filter((data) => {
@@ -169,11 +167,10 @@ exports.get_monthly_report_for_a_teacher = async (teacher, year) => {
   });
   csvWriter.writeRecords(record).then(() => {
     trigger.emit("emailAllUser", email, commonLink + fileName);
-
     console.log("...Done");
   });
 }; //6
-exports.get_monthly_report_for_a_student = async (studentId, month,email) => {
+exports.get_monthly_report_for_a_student = async (studentId, month, email) => {
   const record = await (
     await studentsAttendance.find({ studentId: studentId })
   ).filter((data) => {
@@ -194,7 +191,7 @@ exports.get_monthly_report_for_a_student = async (studentId, month,email) => {
     console.log("...Done");
   });
 }; //7
-exports.get_yearly_report_for_a_student = async (studentId, year,email) => {
+exports.get_yearly_report_for_a_student = async (studentId, year, email) => {
   const record = await (
     await studentsAttendance.find({ studentId })
   ).filter((data) => {
@@ -229,7 +226,76 @@ exports.generateListOfStudents = async () => {
   });
   csvWriter.writeRecords(await students.find()).then(() => {
     trigger.emit("emailAllUser", email, commonLink + fileName);
-
     console.log("...Done");
   });
 }; //9
+//============================================================================================================================================================
+exports.getInfoByGettingFromToDateForStudentsByClassId = async (
+  from = "1000-12-23",
+  to = "2025-12-24",
+  classId
+) => {
+  const document = await studentsAttendance.find({
+    date: {
+      $gt: from,
+      $lt: to,
+    },
+    classId,
+  });
+  const fileName =
+    "_Report_For_getInfoByGettingFrom" +
+    from +
+    "To" +
+    to +
+    "ForStudentsByClass" +
+    classId +
+    ".csv";
+
+  const csvWriter = createCsvWriter({
+    path: commonLocation,
+    header: [
+      { id: "studentId", title: "ID" },
+      { id: "createDate", title: "At" },
+      { id: "date", title: "Date" },
+      { id: "status", title: "Status" },
+    ],
+  });
+  csvWriter.writeRecords(record).then(() => {
+    trigger.emit("emailAllUser", email, commonLink + fileName);
+
+    console.log("...Done");
+  });
+  return document;
+};
+exports.getInfoByGettingFromToDateForTeachers = async (
+  from = "1000-12-23",
+  to = "2025-12-24"
+) => {
+  const document = await teachersAttendance.find({
+    date: {
+      $gt: from,
+      $lt: to,
+    },
+  });
+  const fileName =
+    "_Report_For_getInfoByGettingFrom" +
+    from +
+    "To" +
+    to +
+    "ForTeachers" +
+    ".csv";
+  const csvWriter = createCsvWriter({
+    path: commonLocation,
+    header: [
+      { id: "studentId", title: "ID" },
+      { id: "createDate", title: "At" },
+      { id: "status", title: "Status" },
+    ],
+  });
+  csvWriter.writeRecords(record).then(() => {
+    trigger.emit("emailAllUser", email, commonLink + fileName);
+
+    console.log("...Done");
+  });
+  return document;
+};

@@ -28,3 +28,9 @@ exports.updateOrInsertBulkStudentsAttendance = async ( bulkAttendance) => {
   const data = await students.insertMany(bulkAttendance);
   return await data
 };
+exports.getClassAttendanceByClassId=async(classId)=>{
+return await students.find({classId})
+}
+exports.getClassStudentsAttendaceByDate=async(date)=>{
+  
+}
