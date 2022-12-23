@@ -9,15 +9,15 @@ router.get("/class/:id", async (req, res) => {
     .then((data) => res.json(data))
     .catch((err) => res.status(400).json(err));
 });
-router.post("/ss", async (req, res) => {
+router.post("/", async (req, res) => {
   service
     .findStudentByfirstName(req.body)
     .then((data) => res.json(data))
     .catch((err) => res.status(400).json(err));
 });
-router.post("/", async (req, res) => {
+router.post("/register", async (req, res) => {
   service
-    .register(req.body, userDetail)
+    .register(req.body, req.query.classid)
     .then((data) => res.json(data))
     .catch((err) => res.status(400).json(err));
 });

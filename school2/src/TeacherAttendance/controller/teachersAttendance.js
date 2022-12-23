@@ -9,7 +9,7 @@ router.get("/all", async (req, res) => {
 });
 router.post("/submit", async (req, res) => {
   service
-    .updateOrInsertBulkTeacherAttendance(req.query.date, (req.body))
+    .updateOrInsertBulkTeacherAttendance( (req.body))
     .then((data) => res.json(data))
     .catch((err) => res.status(400).json(err));
 });

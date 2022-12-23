@@ -27,8 +27,8 @@ exports.updateTeachersById = async (id, payload) => {
     { userId: UserId, status: Status, date: Dates, createDate: CreateDate }
   );
 };
-exports.updateOrInsertBulkTeacherAttendance = async (date, bulkAttendance) => {
-  await teachers.deleteMany({date});
+exports.updateOrInsertBulkTeacherAttendance = async ( bulkAttendance) => {
+  await teachers.deleteMany({date:moment().format("YYYY-MM-DD")});
   const data=await teachers.insertMany(bulkAttendance);
   return data
 };

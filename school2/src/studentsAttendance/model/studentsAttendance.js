@@ -24,5 +24,8 @@ const studentAttendanceSchema = new mongoose.Schema({
     type: String,
     default: moment().format("YYYY-MM-DD hh:mm"),
   },
+},
+{
+  versionKey: false 
 });
 module.exports = mongoose.model("studentAttendance", studentAttendanceSchema);

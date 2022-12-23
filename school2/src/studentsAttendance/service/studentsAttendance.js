@@ -23,7 +23,8 @@ exports.findStudentsAttendanceByStudentId = async (studentId) => {
   const data = students.findOne(studentId);
   return data;
 };
-exports.updateOrInsertBulkStudentsAttendance = async (date, bulkAttendance) => {
-  await students.deleteMany({ date });
+exports.updateOrInsertBulkStudentsAttendance = async ( bulkAttendance) => {
+  await students.deleteMany({ date:moment().format("YYYY-MM-DD") });
   const data = await students.insertMany(bulkAttendance);
+  return await data
 };

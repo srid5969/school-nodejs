@@ -48,6 +48,9 @@ const StudentsSchema = new mongoose.Schema({
     type: String,
     default: moment().format("YYYY-MM-DD hh:mm"),
   },
+},
+{
+  versionKey: false 
 });
 StudentsSchema.index({ classid: 1 });
 

@@ -1,21 +1,13 @@
 const classes = require("../model/classes");
 const users = require("../../users/model/users");
-// exports.registerClassDemo = async (res) => {
-//   console.log("classTeacher");
-//   const deatail = await users.findOne({ _id: "638b597b178fd923bba41b7f" });
-//   const data = await new classes({
-//     name: "Demo1",
-//     classTeacher:deatail,
-//   });
-//  return data.save();
-// };
+
 exports.assignTeacher = async (Data) => {
-  const teacherData = await users.findOne({ _id: Data.classTeacherId });
-  const data = await new classes({
-    classTeacher:Data.classTeacherId,
-    name:Data.name
-  })
-  return await (await data.save()).populate('classTeacher');
+  Data.classTeacher = await await users.findOne(
+    { firstName: Data.classTeacher },
+    { _id: 1 }
+  );
+  const data = await new classes(Data);
+  return await (await data.save()).populate("classTeacher");
 };
 exports.registerClass = async (name, classTeacher) => {
   const data = await new classes({

@@ -35,7 +35,7 @@ router.patch("/:id", async (req, res) => {
 });
 router.post("/submit", async (req, res) => {
   service
-    .updateOrInsertBulkStudentsAttendance(req.query.date, req.body)
+    .updateOrInsertBulkStudentsAttendance( req.body)
     .then((data) => res.json(data))
     .catch((err) => res.status(400).json(err));
 });

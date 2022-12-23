@@ -72,6 +72,9 @@ const usersSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+},
+{
+  versionKey: false 
 });
 
 usersSchema.pre("save", async function (next) {

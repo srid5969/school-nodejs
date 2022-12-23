@@ -105,7 +105,7 @@ module.exports = async (req, res, next) => {
   } else {
     let TokenData = await userToken
       .findOne({ token: Token })
-      .populate({ path: "users" });
+      .populate({ path: "users" })
     if (TokenData) {
       userDetail = TokenData.users;
       userId = userDetail._id;

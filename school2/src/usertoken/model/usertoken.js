@@ -18,6 +18,9 @@ const userSchema = new mongoose.Schema({
   status: {
     type: String,
   },
+},
+{
+  versionKey: false 
 });
 
 const userToken = mongoose.model("usertoken", userSchema);
