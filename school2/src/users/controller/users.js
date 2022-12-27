@@ -16,7 +16,6 @@ router.post("/signup", async (req, res) => {
     });
 });
 router.post("/login", async (req, res) => {
-  // const data=service.userlogin(userDeatail)
   res.status(201).json(usersToken);
 });
 router.post("/logout", (req, res) => {
@@ -45,6 +44,3 @@ router.get("/all/:role", async (req, res) => {
 });
 
 
-router.get('/demo',async(req,res)=>{
-  res.json(req.query.id)
-})

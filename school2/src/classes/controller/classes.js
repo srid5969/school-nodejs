@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const students = require("../../students/service/students");
-
 module.exports = router;
 const service = require("../service/classes");
-// students.getStudentsListByClassId
+
+
 router.get("/students/:id", async (req, res) => {
   students
     .getStudentsListByClassId(req.params.id)

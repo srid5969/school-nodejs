@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
   users: {
     type: mongoose.Types.ObjectId,
     ref: "users",
-    required: true,
+    
   },
   createDate: {
     type: String,
@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
   },
   token: {
     type: String,
-    required: true,
+    
   },
   status: {
     type: String,

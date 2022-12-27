@@ -1,19 +1,20 @@
 const mongoose = require("mongoose");
 const moment = require("moment-timezone");
-var AutoIncrement = require("mongoose-sequence")(mongoose);
 
 const teachersAttendanceSchema = new mongoose.Schema(
   {
-    id: { type: Number, unique: true },
+    id: {
+      type: mongoose.Schema.Types.ObjectId,
+      default: new mongoose.Types.ObjectId(),
+    },
 
     userId: {
       type: mongoose.Types.ObjectId,
-      required: true,
+
       ref: "users",
     },
     status: {
       type: String,
-      required: true,
       default: "Inactive",
     },
     date: {
@@ -29,9 +30,9 @@ const teachersAttendanceSchema = new mongoose.Schema(
     versionKey: false,
   }
 );
-teachersAttendanceSchema.plugin(AutoIncrement, {
-  id: "teacherAttendance",
-  inc_field: "id",
-});
-
+teachersAttendanceSchema.index({id:1})
+// teachersAttendanceSchema.plugin(AutoIncrement, {
+//   id: "teacherAttendance",startAt: 50,
+//   inc_field: "id",
+// });
 module.exports = mongoose.model("teacherAttendance", teachersAttendanceSchema);

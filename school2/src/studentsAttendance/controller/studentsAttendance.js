@@ -41,7 +41,7 @@ router.post("/submit", async (req, res) => {
 });
 router.get("/", async (req, res) => {
   service
-    .getClassAttendanceByClassId(req.query.classId)
+    .getClassAttendanceByClassId((req.query.classId))
     .then((data) => res.json(data))
     .catch((err) => res.status(400).json(err));
 });

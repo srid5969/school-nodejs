@@ -2,7 +2,6 @@
 const users = require("../model/users");
 
 exports.getAll = () => {
-  // return users.find({},{ projection: { _id: 0 } })
   return users.find().sort({ createDate: 1 })
   //.select(" email firstName lastName phone phoneCode gender status");
 };
@@ -10,9 +9,9 @@ exports.getById = async (_id) => {
   const data = await users
     .findById(_id)
     .select(
-      " _id email password phone phoneCode gender dob role address1 address2 city state pincode status firstName lastName"
+      " _id email  phone phoneCode gender dob role address1 address2 city state pincode status firstName lastName"
     );
-  data.password = "password";
+ 
 
   return data;
 };

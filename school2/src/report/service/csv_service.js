@@ -201,7 +201,7 @@ exports.get_yearly_report_for_a_student = async (studentId, year, email) => {
   const csvWriter = createCsvWriter({
     path: commonLocation,
     header: [
-      { id: "studentId", title: "ID" },
+      { id: "student", title: "ID" },
       { id: "createDate", title: "At" },
       { id: "status", title: "Status" },
     ],

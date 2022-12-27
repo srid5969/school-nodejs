@@ -1,15 +1,15 @@
 const mongoose = require("mongoose");
 const moment = require("moment-timezone");
-var AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const classesSchema = new mongoose.Schema({
-  id:{type:Number,unique:true},
-
-  name: { type: String, required: true, unique: true },
+  id: {
+    type: mongoose.Schema.Types.ObjectId,
+    default: new mongoose.Types.ObjectId(),
+  },
+  name: { type: String,  unique: true },
   classTeacher: {
     type: mongoose.Types.ObjectId,
     ref: "users",
-    required: true,
   },
   createDate: {
     type: String,
@@ -19,6 +19,5 @@ const classesSchema = new mongoose.Schema({
 {
   versionKey: false 
 });
-classesSchema.plugin(AutoIncrement, {id:'class',inc_field: 'id'});
-
+classesSchema.index({id:1},{unique: true})
 module.exports = mongoose.model("classes", classesSchema);

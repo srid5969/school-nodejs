@@ -12,13 +12,14 @@ const commonMiddleware = require("../common/middleware/commonmiddleware");
 const csvController = require("./report/controller/csv_controller");
 const email = require("./report/emailcontroller/email");
 
-
 const app = express();
 app.use(express.json());
 app.use(cors({ origin: "*" }));
 
 mongoose.connect(manager);
 const database = mongoose.connection;
+mongoose.set('autoIndex', false);
+mongoose.set('strictQuery', true);
 database.on("error", (error) => console.error());
 database.once("connected", () => {  console.log("Database Connected");});
 

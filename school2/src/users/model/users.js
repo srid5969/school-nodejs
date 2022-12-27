@@ -1,27 +1,21 @@
 const mongoose = require("mongoose");
 const moment = require("moment-timezone");
-var AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const usersSchema = new mongoose.Schema(
   {
     id: {
-      type: Number,
-      unique: true,
-     
-      
+      type: mongoose.Schema.Types.ObjectId,
+      default: new mongoose.Types.ObjectId(),
     },
     firstName: {
       type: String,
-      required: true,
       unique: true,
     },
     lastName: {
       type: String,
-      required: true,
     },
     phone: {
       type: Number,
-      required: true,
     },
     phoneCode: {
       type: Number,
@@ -29,20 +23,17 @@ const usersSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      required: true,
+
       unique: true,
     },
     password: {
       type: String,
-      required: true,
     },
     gender: {
       type: String,
-      required: true,
     },
     dob: {
       type: String,
-      required: true,
     },
     createDate: {
       type: String,
@@ -50,38 +41,44 @@ const usersSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      required: true,
     },
     address1: {
       type: String,
-      required: true,
     },
     address2: {
       type: String,
-      required: true,
     },
     city: {
       type: String,
-      required: true,
     },
     state: {
       type: String,
-      required: true,
     },
     pincode: {
       type: Number,
-      required: true,
     },
     status: {
       type: String,
-      required: true,
     },
   },
   {
     versionKey: false,
   }
 );
+usersSchema.index({id:1})
+// usersSchema.plugin(AutoIncrement, { id: "user",startAt: 50, inc_field: "id" });
+// usersSchema.pre("save", () => {
+//   new Promise((resolve, reject) => {
+//     const id = new mongoose.Types.ObjectId();
+//     console.log(id);
+//   });
+// })
 
-usersSchema.plugin(AutoIncrement, {id:'user',inc_field: 'id'});
-
+// function name() {
+//  return new Promise((resolve, reject) => {
+//     const id =mongoose.Types.ObjectId();
+//     resolve(id)
+//   });
+// }
+// name().then(data=>console.log(data))
 module.exports = mongoose.model("users", usersSchema);

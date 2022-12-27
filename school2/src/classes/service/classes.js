@@ -18,19 +18,48 @@ exports.registerClass = async (name, classTeacher) => {
   return data.save();
 };
 exports.getAll = async (condition, classTeacher) => {
-  console.log(" await classes.find()");
-
-  if (condition == "Teacher") {
-    const Data = await classes
-      .find({ classTeacher })
-      .populate({ path: "classTeacher" });
-    return Data;
-  } else {
-    const Data = await classes.find({}).lean().populate({ path: "classTeacher",select: ' firstName' }) .select('name  classTeacher');
-    
-    return Data;
+  if (condition === "Teacher") {
+    return new Promise(async (resolve, reject) => {
+      let data = await classes
+        .find({ classTeacher })
+        .populate({ path: "classTeacher", select: " firstName lastName" })
+        .select("name  classTeacher");
+      const Data = await data.map((data) => {
+        return {
+          classId: data._id,
+          classTeacher:
+            data.classTeacher.firstName + " " + data.classTeacher.lastName,
+          name: data.name,
+        }; 
+      });
+      if (Data) {
+        resolve(Data);
+      } else {
+        reject({ mes: "Something is Problem in backend" });
+      }
+    });
   }
+  return new Promise(async (resolve, reject) => {
+    let data = await classes
+      .find({})
+      .populate({ path: "classTeacher", select: " firstName lastName" })
+      .select("name  classTeacher");
+    const Data = await data.map((data) => {
+      return {
+        classId: data._id,
+        classTeacher:
+          data.classTeacher.firstName + " " + data.classTeacher.lastName,
+        name: data.name,
+      };
+    });
+    if (Data) {
+      resolve(Data);
+    } else {
+      reject({ mes: "Something is Problem in backend" });
+    }
+  });
 };
+
 exports.getByClassId = async (_id) => {
   const data = classes
     .findOne(_id)

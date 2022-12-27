@@ -2,7 +2,11 @@ const bcrypt = require("bcrypt");
 const users = require("../../src/users/model/users");
 const userToken = require("../../src/usertoken/model/usertoken");
 const event = require("../events/users");
+// const autoincreament = require("../events/autoincreament");
+
+
 module.exports = async (req, res, next) => {
+  
   let originalUrl = req.originalUrl;
   console.log(
     `\n\n \t http://192.168.0.123:8080${originalUrl} \t ${req.method}`
@@ -46,14 +50,13 @@ module.exports = async (req, res, next) => {
               "\t: Has Logged in"
             );
             console.log("\t Login Time\t:", usersTokenWithPassword.createDate);
-            console.log(usersTokenWithPassword);
             let result = usersTokenWithPassword;
             result = result.toObject();
             delete result.users.password;
             usersToken = result;
             next();
           } else {
-            res.json("Wrong password please check the password");
+            res.status(400).json("Wrong password please check the password");
           }
         } else {
           res.json("Please add username and password");
@@ -107,7 +110,7 @@ module.exports = async (req, res, next) => {
     let TokenData = await userToken
       .findOne({ token: Token })
       .populate({ path: "users", select: "firstName email role phone" });
-    console.log(TokenData);
+    // console.log(TokenData);
     if (TokenData) {
       userDetail = TokenData.users;
       userId = userDetail._id;
@@ -156,4 +159,5 @@ module.exports = async (req, res, next) => {
       else res.status(400).json({ message: "User is not verified" });
     }
   }
+  // if(req.method=='POST') autoincreament.emit('generateId')
 };

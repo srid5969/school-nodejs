@@ -1,12 +1,13 @@
-const students = require("../model/studentsAttendance");
+const moment = require("moment-timezone");
 
-exports.getAll = async () => {
+const students = require("../model/studentsAttendance");
+const tita = (exports.getAll = async () => {
   return await students
     .find()
-    .populate("studentId")
-    .populate("classId")
+    .populate("student")
+    .populate("class")
     .sort({ createDate: -1 });
-};
+});
 exports.register = async (Data) => {
   const data = new students(Data);
   return await data.save();
@@ -23,14 +24,24 @@ exports.findStudentsAttendanceByStudentId = async (studentId) => {
   const data = students.findOne(studentId);
   return data;
 };
-exports.updateOrInsertBulkStudentsAttendance = async ( bulkAttendance) => {
-  await students.deleteMany({ date:moment().format("YYYY-MM-DD") });
-  const data = await students.insertMany(bulkAttendance);
-  return await data
+exports.updateOrInsertBulkStudentsAttendance = async (bulkAttendance) => {
+  try {
+    // console.log(await students.find({date:{ $lt:moment().format("YYYY-MM-DD")}}));
+    if (await students.findOne({ date: moment().format("YYYY-MM-DD") })) {
+      const t = await students.deleteMany({
+        date: moment().format("YYYY-MM-DD"),
+      });
+      console.log("=======hjdfhgjdfhjfghnj=========");
+    }
+    const data = await students.insertMany(bulkAttendance);
+
+    return await data;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
 };
-exports.getClassAttendanceByClassId=async(classId)=>{
-return await students.find({classId})
-}
-exports.getClassStudentsAttendaceByDate=async(date)=>{
-  
-}
+exports.getClassAttendanceByClassId = async (classId) => {
+  return await students.find({ class: classId });
+};
+exports.getClassStudentsAttendanceByDate = async (date) => {};
